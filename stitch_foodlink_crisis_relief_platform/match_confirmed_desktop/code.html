@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Match Confirmation | FoodLink</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Atkinson+Hyperlegible+Next:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for data-heavy sections */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bdc9c6;
+            border-radius: 10px;
+        }
+        /* Transition for interaction buttons */
+        .btn-interact {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-interact:active {
+            transform: scale(0.96);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#684000",
+                        "tertiary-fixed": "#ffdad6",
+                        "tertiary": "#a50710",
+                        "on-surface-variant": "#3e4947",
+                        "primary-fixed": "#9cf2e8",
+                        "on-surface": "#111c2d",
+                        "inverse-surface": "#263143",
+                        "error": "#ba1a1a",
+                        "secondary": "#855300",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb4ab",
+                        "outline-variant": "#bdc9c6",
+                        "on-primary-fixed-variant": "#00504a",
+                        "inverse-on-surface": "#ecf1ff",
+                        "primary-fixed-dim": "#80d5cb",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00201d",
+                        "surface-container-highest": "#d8e3fb",
+                        "surface-bright": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#93000b",
+                        "outline": "#6e7977",
+                        "secondary-container": "#fea619",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#80d5cb",
+                        "tertiary-container": "#c92926",
+                        "on-tertiary-container": "#ffe4e0",
+                        "surface-variant": "#d8e3fb",
+                        "surface-tint": "#006a63",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface-dim": "#cfdaf2",
+                        "background": "#f9f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-fixed": "#410002",
+                        "surface-container": "#e7eeff",
+                        "primary": "#005c55",
+                        "surface-container-high": "#dee8ff",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#0f766e",
+                        "on-background": "#111c2d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#a3faef",
+                        "surface-container-low": "#f0f3ff",
+                        "secondary-fixed": "#ffddb8",
+                        "on-secondary-fixed": "#2a1700",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "status-indicator": ["Atkinson Hyperlegible Next"],
+                        "label-caps": ["Atkinson Hyperlegible Next"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "status-indicator": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-14 bg-surface border-b border-outline-variant z-50 sticky top-0">
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 p-2 rounded-full transition-colors duration-200">menu</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">FoodLink</span>
+</div>
+<div class="flex items-center gap-stack-lg">
+<nav class="hidden md:flex gap-stack-lg">
+<a class="font-label-caps text-label-caps text-primary" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">History</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Impact</a>
+</nav>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant/50 p-2 rounded-full transition-colors duration-200">notifications</button>
+</div>
+</header>
+<main class="min-h-[calc(100vh-3.5rem)] w-full flex flex-col md:flex-row bg-surface">
+<!-- Left Side: Match Summary -->
+<section class="flex-1 px-margin-desktop py-stack-lg border-r border-outline-variant custom-scrollbar overflow-y-auto">
+<div class="max-w-xl mx-auto space-y-stack-lg">
+<!-- Status Header -->
+<div class="space-y-unit">
+<span class="bg-secondary-container text-on-secondary-container font-status-indicator text-status-indicator px-stack-sm py-unit rounded">MATCH CONFIRMED</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Surplus Collection Ready</h1>
+<p class="text-on-surface-variant font-body-md">Logistics coordination for Order #FL-8821</p>
+</div>
+<!-- Mirrored Summary Grid: Who -> What -> Where -> When -->
+<div class="grid grid-cols-1 gap-gutter">
+<!-- Who -->
+<div class="flex items-start gap-stack-md p-stack-md bg-white border border-outline-variant rounded-xl shadow-sm">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined filled-icon">store</span>
+</div>
+<div class="flex-1">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant">THE PROVIDER</h3>
+<p class="font-headline-sm text-headline-sm text-primary">Bistro 22 Central</p>
+<p class="text-body-md text-on-surface-variant">Point of Contact: Marcus V.</p>
+</div>
+<div class="flex items-center gap-stack-sm">
+<div class="w-2 h-2 bg-green-500 rounded-full"></div>
+<span class="text-label-caps text-on-surface-variant">ON-SITE</span>
+</div>
+</div>
+<!-- What -->
+<div class="flex items-start gap-stack-md p-stack-md bg-white border border-outline-variant rounded-xl shadow-sm">
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined filled-icon">inventory_2</span>
+</div>
+<div class="flex-1">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant">THE PACKAGE</h3>
+<p class="font-headline-sm text-headline-sm text-on-surface">Prepared Meals & Fresh Produce</p>
+<ul class="mt-stack-sm space-y-unit text-body-md text-on-surface-variant">
+<li class="flex items-center gap-stack-sm"><span class="w-1 h-1 bg-outline rounded-full"></span> 14x Boxed Pasta Meals (Vegetarian)</li>
+<li class="flex items-center gap-stack-sm"><span class="w-1 h-1 bg-outline rounded-full"></span> 2x Crates Organic Spinach</li>
+<li class="flex items-center gap-stack-sm"><span class="w-1 h-1 bg-outline rounded-full"></span> 1x Tray Fresh Sourdough</li>
+</ul>
+</div>
+</div>
+<!-- Where -->
+<div class="flex items-start gap-stack-md p-stack-md bg-white border border-outline-variant rounded-xl shadow-sm">
+<div class="w-12 h-12 bg-surface-container-highest rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined filled-icon">location_on</span>
+</div>
+<div class="flex-1">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant">THE DESTINATION</h3>
+<p class="font-headline-sm text-headline-sm text-on-surface">Harbor Light Shelter</p>
+<p class="text-body-md text-on-surface-variant">842 Maritime Ave, Loading Dock B</p>
+</div>
+</div>
+<!-- When -->
+<div class="flex items-start gap-stack-md p-stack-md bg-tertiary-container/10 border border-tertiary/20 rounded-xl shadow-sm">
+<div class="w-12 h-12 bg-tertiary-container rounded-full flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined filled-icon">schedule</span>
+</div>
+<div class="flex-1">
+<h3 class="font-label-caps text-label-caps text-tertiary">TIME SENSITIVE</h3>
+<div class="flex items-baseline gap-stack-sm">
+<p class="font-headline-md text-headline-md text-tertiary">Pickup by 2:45 PM</p>
+</div>
+<p class="text-body-md text-on-tertiary-fixed-variant">Expires in 18 minutes</p>
+</div>
+</div>
+</div>
+<!-- Logistics Footnote -->
+<div class="p-stack-md bg-surface-container-low rounded-lg border border-outline-variant/30 flex items-start gap-stack-md">
+<span class="material-symbols-outlined text-on-surface-variant">info</span>
+<p class="text-body-md text-on-surface-variant italic">
+                        Please ensure you have temperature-controlled transport bags. The Bistro will provide labels for all hot items.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Right Side: Logistics & Action -->
+<section class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- Map Preview (Interactive Placeholder) -->
+<div class="relative flex-1 min-h-[300px] w-full bg-surface-container-high overflow-hidden group">
+<div class="absolute inset-0 z-0 bg-cover bg-center grayscale-[0.5] contrast-[0.9]" data-location="Chicago Downtown Map" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTha8QkaN9UbJhkN_axeOJ_YkcxtTKHdOIQ5WJ4X7_Ixqj9JN_Go0Z5TgpOSLSdfrQPRNvzPWoS1F0WiehezNi5ir8i6Ax4Rl82L3FfAkm_1oOBQAJWWW6gl6uHebAZUMHjB_bOeKRWRxlhZh72D54blTfZA8zd65Al2Az_WE4z9DEoVb8Uj96eHsrXSdcT8KtR_2aj0vqE8bdcs81R4lfJEIaRKZyp6W0fUQlRCSOMcSleoUkk6htt8G9aj-17X5lCOtKenwkP7A')"></div>
+<!-- Overlay Elements -->
+<div class="absolute top-stack-md left-stack-md z-10 p-stack-md bg-white/90 backdrop-blur-md border border-outline-variant rounded-lg shadow-xl max-w-[240px]">
+<div class="flex items-center justify-between mb-unit">
+<span class="font-label-caps text-label-caps text-on-surface-variant">ESTIMATED ARRIVAL</span>
+<span class="material-symbols-outlined text-primary text-sm">navigation</span>
+</div>
+<div class="text-headline-md font-bold text-on-surface">12 mins</div>
+<div class="text-body-md text-on-surface-variant">Traffic: Light (2.4 miles)</div>
+</div>
+<!-- Custom Route Marker Logic (Simulated) -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-full h-full relative">
+<!-- Origin Pin -->
+<div class="absolute top-1/4 left-1/3 animate-bounce">
+<span class="material-symbols-outlined filled-icon text-primary text-4xl drop-shadow-lg">location_on</span>
+</div>
+<!-- Destination Pin -->
+<div class="absolute bottom-1/3 right-1/4">
+<span class="material-symbols-outlined filled-icon text-tertiary text-4xl drop-shadow-lg">location_on</span>
+</div>
+<!-- Path Line -->
+<svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+<path d="M 400 200 Q 500 250, 600 450" fill="transparent" stroke="#005c55" stroke-dasharray="8 4" stroke-width="4"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Access Details & Primary Actions -->
+<div class="p-margin-desktop bg-white border-t border-outline-variant space-y-stack-lg shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<!-- Details Grid -->
+<div class="grid grid-cols-2 gap-stack-lg">
+<div class="space-y-unit">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant">ACCESS CODE / BUZZER</h4>
+<div class="flex items-center gap-stack-sm p-stack-md bg-surface-container rounded-lg border border-outline-variant font-headline-sm tracking-widest text-primary">
+                            #4421B
+                            <button class="material-symbols-outlined text-body-md text-on-surface-variant ml-auto hover:text-primary">content_copy</button>
+</div>
+</div>
+<div class="space-y-unit">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant">PICKUP NOTES</h4>
+<p class="text-body-md text-on-surface leading-snug">
+                            Ring buzzer at rear alley. Ask for Marcus or Head Chef Tanya.
+                        </p>
+</div>
+</div>
+<!-- Action Button Cluster -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<!-- Secondary Action: Reschedule -->
+<button class="btn-interact flex items-center justify-center gap-stack-sm px-stack-md h-14 border-2 border-outline text-on-surface font-headline-sm rounded-xl hover:bg-surface-variant/20">
+<span class="material-symbols-outlined">event_repeat</span>
+                        Reschedule
+                    </button>
+<!-- Secondary Action: Call -->
+<button class="btn-interact flex items-center justify-center gap-stack-sm px-stack-md h-14 border-2 border-primary text-primary font-headline-sm rounded-xl hover:bg-primary/5">
+<span class="material-symbols-outlined">call</span>
+                        Call Contact
+                    </button>
+<!-- Primary Action: Slide to Confirm / On my way -->
+<div class="relative group cursor-pointer" id="confirmSlider">
+<div class="flex items-center justify-center gap-stack-sm px-stack-md h-14 bg-primary text-white font-headline-sm rounded-xl overflow-hidden shadow-lg transition-all hover:bg-primary-container">
+<span class="material-symbols-outlined animate-pulse">directions_car</span>
+                            On my way
+                            <!-- Gloss shine effect -->
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Success Feedback Overlay (Hidden by Default) -->
+<div class="fixed inset-0 z-[100] bg-primary/95 backdrop-blur-sm flex flex-col items-center justify-center text-white hidden opacity-0 transition-opacity duration-500" id="successOverlay">
+<span class="material-symbols-outlined text-[120px] mb-stack-lg filled-icon">check_circle</span>
+<h2 class="font-headline-lg text-headline-lg mb-unit">Safe Travels!</h2>
+<p class="font-body-lg text-body-lg text-on-primary-container">Marcus has been notified that you're en route.</p>
+<button class="mt-stack-lg px-stack-lg py-stack-md bg-white text-primary font-headline-sm rounded-full shadow-xl hover:bg-surface-variant transition-colors" onclick="window.location.reload()">
+            Return to Dashboard
+        </button>
+</div>
+<!-- Interaction Script -->
+<script>
+        document.getElementById('confirmSlider').addEventListener('click', function() {
+            const overlay = document.getElementById('successOverlay');
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.remove('opacity-0');
+            }, 10);
+        });
+
+        // Simple animation logic for the 'On my way' button to mimic urgency
+        setInterval(() => {
+            const icon = document.querySelector('#confirmSlider span');
+            if (icon) {
+                icon.classList.add('translate-x-1');
+                setTimeout(() => icon.classList.remove('translate-x-1'), 150);
+            }
+        }, 3000);
+    </script>
+</body></html>

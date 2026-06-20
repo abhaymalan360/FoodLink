@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodLink | NGO Dashboard</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Atkinson+Hyperlegible+Next:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#684000",
+                    "tertiary-fixed": "#ffdad6",
+                    "tertiary": "#a50710",
+                    "on-surface-variant": "#3e4947",
+                    "primary-fixed": "#9cf2e8",
+                    "on-surface": "#111c2d",
+                    "inverse-surface": "#263143",
+                    "error": "#ba1a1a",
+                    "secondary": "#855300",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb4ab",
+                    "outline-variant": "#bdc9c6",
+                    "on-primary-fixed-variant": "#00504a",
+                    "inverse-on-surface": "#ecf1ff",
+                    "primary-fixed-dim": "#80d5cb",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#00201d",
+                    "surface-container-highest": "#d8e3fb",
+                    "surface-bright": "#f9f9ff",
+                    "on-tertiary-fixed-variant": "#93000b",
+                    "outline": "#6e7977",
+                    "secondary-container": "#fea619",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#80d5cb",
+                    "tertiary-container": "#c92926",
+                    "on-tertiary-container": "#ffe4e0",
+                    "surface-variant": "#d8e3fb",
+                    "surface-tint": "#006a63",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "surface-dim": "#cfdaf2",
+                    "background": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "on-tertiary-fixed": "#410002",
+                    "surface-container": "#e7eeff",
+                    "primary": "#005c55",
+                    "surface-container-high": "#dee8ff",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#0f766e",
+                    "on-background": "#111c2d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#a3faef",
+                    "surface-container-low": "#f0f3ff",
+                    "secondary-fixed": "#ffddb8",
+                    "on-secondary-fixed": "#2a1700",
+                    "secondary-fixed-dim": "#ffb95f",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "status-indicator": ["Atkinson Hyperlegible Next"],
+                    "label-caps": ["Atkinson Hyperlegible Next"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "status-indicator": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        
+        body {
+            background-color: #F8FAFC;
+        }
+
+        /* Tactical Slide Confirmation Simulation */
+        .confirm-slider {
+            position: relative;
+            background: #E2E8F0;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .confirm-slider:hover {
+            background: #CBD5E1;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<div class="flex min-h-screen overflow-hidden">
+<!-- SIDEBAR NAVIGATION (LEFT) -->
+<aside class="w-64 bg-surface-container border-r border-outline-variant hidden md:flex flex-col z-40">
+<div class="p-stack-lg">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">FoodLink</span>
+</div>
+<nav class="flex-1 px-stack-md py-stack-sm space-y-unit">
+<!-- Active Tab: Home (NGO Dashboard) -->
+<a class="flex items-center gap-stack-md px-stack-md py-3 bg-primary-container text-on-primary-container rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-headline-sm text-headline-sm">Home</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-headline-sm text-headline-sm">Post</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="font-headline-sm text-headline-sm">Alerts</span>
+<span class="ml-auto bg-tertiary-container text-on-tertiary-container text-[10px] px-2 py-0.5 rounded-full font-bold">3</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-headline-sm text-headline-sm">Impact</span>
+</a>
+</nav>
+<div class="p-stack-md mt-auto border-t border-outline-variant">
+<div class="flex items-center gap-stack-md p-stack-sm rounded-lg hover:bg-surface-variant/50 cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined">corporate_fare</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface">Shelter Reach</span>
+<span class="text-[12px] text-on-surface-variant">NGO Admin</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN CONTENT AREA -->
+<div class="flex-1 flex flex-col h-screen overflow-y-auto">
+<!-- HEADER BAR -->
+<header class="h-14 bg-surface px-margin-desktop flex items-center justify-between border-b border-outline-variant sticky top-0 z-30">
+<div class="flex items-center gap-stack-md">
+<div class="flex items-center bg-surface-container-low px-stack-md py-1.5 rounded-full border border-outline-variant cursor-pointer hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[18px] mr-2">location_on</span>
+<span class="font-label-caps text-label-caps uppercase">Downtown District</span>
+<span class="material-symbols-outlined text-[18px] ml-2">expand_more</span>
+</div>
+<span class="h-4 w-[1px] bg-outline-variant"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface-variant">NGO Dashboard</h2>
+</div>
+<div class="flex items-center gap-stack-lg">
+<button class="relative p-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-tertiary rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</header>
+<!-- DASHBOARD GRID -->
+<main class="p-margin-desktop grid grid-cols-12 gap-gutter">
+<!-- COLUMN 1: ACTIVE NEED STATUS -->
+<div class="col-span-12 lg:col-span-3 space-y-stack-lg">
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-md overflow-hidden relative">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
+<div class="flex justify-between items-start mb-stack-md">
+<span class="bg-secondary-container text-on-secondary-container font-status-indicator text-status-indicator px-2 py-0.5 rounded">ACTIVE NEED</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">LVL 2</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-unit">150 Meals</h3>
+<p class="text-on-surface-variant font-body-md mb-stack-lg">Seeking surplus prepared meals in <span class="font-bold text-on-surface">Downtown</span> for tonight's service.</p>
+<div class="space-y-stack-md">
+<div class="flex items-center justify-between text-body-md">
+<span class="text-on-surface-variant">Progress</span>
+<span class="font-bold">45 / 150</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 30%"></div>
+</div>
+</div>
+<button class="w-full mt-stack-lg py-4 border-2 border-dashed border-outline text-on-surface-variant hover:border-primary hover:text-primary transition-all rounded-lg font-headline-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">edit</span>
+                            Update Request
+                        </button>
+</section>
+<section class="bg-surface-container-low p-stack-md rounded-lg">
+<h4 class="font-label-caps text-label-caps mb-stack-md text-on-surface-variant">OPERATIONAL MAP</h4>
+<div class="aspect-square bg-surface-variant rounded-lg overflow-hidden border border-outline-variant relative group">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-location="Chicago Downtown" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTha8QkaN9UbJhkN_axeOJ_YkcxtTKHdOIQ5WJ4X7_Ixqj9JN_Go0Z5TgpOSLSdfrQPRNvzPWoS1F0WiehezNi5ir8i6Ax4Rl82L3FfAkm_1oOBQAJWWW6gl6uHebAZUMHjB_bOeKRWRxlhZh72D54blTfZA8zd65Al2Az_WE4z9DEoVb8Uj96eHsrXSdcT8KtR_2aj0vqE8bdcs81R4lfJEIaRKZyp6W0fUQlRCSOMcSleoUkk6htt8G9aj-17X5lCOtKenwkP7A')"></div>
+<div class="absolute inset-0 bg-primary/10 pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-tertiary text-4xl animate-bounce" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</section>
+</div>
+<!-- COLUMN 2: INCOMING MATCHES FEED -->
+<div class="col-span-12 lg:col-span-6">
+<div class="flex items-center justify-between mb-stack-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface">Incoming Deliveries</h3>
+<div class="flex gap-stack-sm">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-caps text-label-caps">3 MATCHES FOUND</span>
+</div>
+</div>
+<div class="space-y-stack-md">
+<!-- MATCH CARD 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-lg hover:border-primary transition-colors group">
+<div class="flex justify-between items-start mb-stack-md">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">restaurant</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm">Bistro Central</h4>
+<div class="flex items-center gap-1 text-on-surface-variant text-body-md">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>Pickup in <span class="text-tertiary font-bold">14 mins</span></span>
+</div>
+</div>
+</div>
+<span class="font-label-caps text-label-caps bg-surface-container px-2 py-1 rounded">22 MEALS</span>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded mb-stack-lg border-l-4 border-primary">
+<p class="text-on-surface-variant italic font-body-md text-sm">"Tray of roasted vegetables, 15 boxed sandwiches (nut-free), fresh fruit salad."</p>
+</div>
+<div class="flex gap-stack-md">
+<button class="flex-1 py-4 bg-primary text-on-primary font-headline-sm rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-colors active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">check_circle</span>
+                                    Confirm Pickup
+                                </button>
+<button class="w-14 h-14 border border-outline rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-variant/20 transition-colors">
+<span class="material-symbols-outlined">navigation</span>
+</button>
+</div>
+</div>
+<!-- MATCH CARD 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-lg group opacity-80">
+<div class="flex justify-between items-start mb-stack-md">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">bakery_dining</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm">The Grain Mill</h4>
+<div class="flex items-center gap-1 text-on-surface-variant text-body-md">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>Pickup in <span class="text-on-surface font-bold">45 mins</span></span>
+</div>
+</div>
+</div>
+<span class="font-label-caps text-label-caps bg-surface-container px-2 py-1 rounded">12 MEALS</span>
+</div>
+<div class="flex gap-stack-md">
+<button class="flex-1 py-4 bg-surface-variant text-on-surface-variant font-headline-sm rounded-lg cursor-not-allowed opacity-50 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">lock</span>
+                                    Available soon
+                                </button>
+<button class="w-14 h-14 border border-outline rounded-lg flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">info</span>
+</button>
+</div>
+</div>
+<!-- EMPTY STATE HINT -->
+<div class="py-stack-lg border-2 border-dashed border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-4xl mb-stack-sm text-outline-variant">find_replace</span>
+<p class="font-body-md">Scanning for additional matches nearby...</p>
+</div>
+</div>
+</div>
+<!-- COLUMN 3: HISTORY & ANALYTICS -->
+<div class="col-span-12 lg:col-span-3 space-y-stack-lg">
+<!-- IMPACT CARD -->
+<section class="bg-primary text-on-primary rounded-lg p-stack-lg shadow-xl relative overflow-hidden">
+
+<div class="relative z-10">
+<h4 class="font-label-caps text-label-caps mb-stack-md opacity-80 uppercase tracking-widest">Global Impact Score</h4>
+<div class="flex items-baseline gap-2 mb-stack-sm">
+<span class="font-headline-lg text-[40px] leading-none">8,241</span>
+<span class="font-body-md">meals saved</span>
+</div>
+<p class="text-on-primary/70 text-sm mb-stack-md font-body-md">You're in the top 5% of community partners this month.</p>
+<div class="w-full bg-white/20 h-1 rounded-full">
+<div class="bg-white h-full rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</section>
+<!-- RECENT HISTORY -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg flex flex-col">
+<div class="p-stack-md border-b border-outline-variant">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant">RECENT ACTIVITY</h4>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- HISTORY ITEM -->
+<div class="p-stack-md hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-body-md font-bold text-on-surface">Deli Express</span>
+<span class="text-[12px] text-on-surface-variant">2h ago</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span>
+<span class="text-sm text-on-surface-variant">28 meals delivered</span>
+</div>
+</div>
+<!-- HISTORY ITEM -->
+<div class="p-stack-md hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-body-md font-bold text-on-surface">The Green Leaf</span>
+<span class="text-[12px] text-on-surface-variant">Yesterday</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span>
+<span class="text-sm text-on-surface-variant">42 meals delivered</span>
+</div>
+</div>
+<!-- HISTORY ITEM -->
+<div class="p-stack-md hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-body-md font-bold text-on-surface">Pizzeria 18</span>
+<span class="text-[12px] text-on-surface-variant">2 days ago</span>
+</div>
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined text-[14px]">cancel</span>
+<span class="text-sm">Pickup missed</span>
+</div>
+</div>
+</div>
+<a class="p-stack-md text-center text-primary font-label-caps text-label-caps hover:underline border-t border-outline-variant" href="#">
+                            VIEW FULL LOGS
+                        </a>
+</section>
+<!-- SYSTEM HEALTH -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-stack-md">
+<div class="flex items-center gap-stack-sm mb-stack-sm">
+<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="font-label-caps text-label-caps text-on-surface">LIVE LOGISTICS FEED</span>
+</div>
+<div class="text-[12px] text-on-surface-variant font-mono space-y-1">
+<p>&gt; Connected to Chicago Relay</p>
+<p>&gt; GPS Heartbeat: OK</p>
+<p>&gt; API Latency: 24ms</p>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB: MOBILE ONLY (RELEVANT FOR NGO NEEDS) -->
+<button class="md:hidden fixed bottom-24 right-margin-mobile w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-50">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- BOTTOM NAVIGATION (MOBILE ONLY) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile py-stack-sm bg-surface border-t border-outline-variant md:hidden">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-stack-md py-unit transition-all duration-300" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-stack-md py-unit transition-all duration-300" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-caps text-label-caps">Post</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-stack-md py-unit transition-all duration-300" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="font-label-caps text-label-caps">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-stack-md py-unit transition-all duration-300" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-caps text-label-caps">Impact</span>
+</a>
+</nav>
+<script>
+        // Simple interaction script for button feedback
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.innerText.includes('Confirm Pickup')) {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Processing...';
+                    this.classList.replace('bg-primary', 'bg-emerald-600');
+                    setTimeout(() => {
+                        this.innerHTML = '<span class="material-symbols-outlined">task_alt</span> Confirmed';
+                        this.disabled = true;
+                        this.classList.replace('bg-emerald-600', 'bg-emerald-700');
+                    }, 1200);
+                }
+            });
+        });
+    </script>
+</body></html>

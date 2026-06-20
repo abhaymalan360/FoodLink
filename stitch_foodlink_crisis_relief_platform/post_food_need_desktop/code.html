@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodLink | NGO Demand Reporting</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Atkinson+Hyperlegible+Next:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .urgent-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .7; }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#684000",
+                        "tertiary-fixed": "#ffdad6",
+                        "tertiary": "#a50710",
+                        "on-surface-variant": "#3e4947",
+                        "primary-fixed": "#9cf2e8",
+                        "on-surface": "#111c2d",
+                        "inverse-surface": "#263143",
+                        "error": "#ba1a1a",
+                        "secondary": "#855300",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb4ab",
+                        "outline-variant": "#bdc9c6",
+                        "on-primary-fixed-variant": "#00504a",
+                        "inverse-on-surface": "#ecf1ff",
+                        "primary-fixed-dim": "#80d5cb",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00201d",
+                        "surface-container-highest": "#d8e3fb",
+                        "surface-bright": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#93000b",
+                        "outline": "#6e7977",
+                        "secondary-container": "#fea619",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#80d5cb",
+                        "tertiary-container": "#c92926",
+                        "on-tertiary-container": "#ffe4e0",
+                        "surface-variant": "#d8e3fb",
+                        "surface-tint": "#006a63",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface-dim": "#cfdaf2",
+                        "background": "#f9f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-fixed": "#410002",
+                        "surface-container": "#e7eeff",
+                        "primary": "#005c55",
+                        "surface-container-high": "#dee8ff",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#0f766e",
+                        "on-background": "#111c2d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#a3faef",
+                        "surface-container-low": "#f0f3ff",
+                        "secondary-fixed": "#ffddb8",
+                        "on-secondary-fixed": "#2a1700",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "status-indicator": ["Atkinson Hyperlegible Next"],
+                        "label-caps": ["Atkinson Hyperlegible Next"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "status-indicator": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden custom-scrollbar">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-14 bg-surface border-b border-outline-variant z-50 sticky top-0">
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 p-unit transition-colors duration-200 active:scale-95" data-icon="menu">menu</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">FoodLink</h1>
+</div>
+<nav class="hidden md:flex items-center gap-stack-lg">
+<a class="font-label-caps text-label-caps text-primary" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Post</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Alerts</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Impact</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant/50 p-unit transition-colors duration-200 active:scale-95" data-icon="notifications">notifications</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female NGO coordinator in her 40s, wearing a neutral business casual outfit. The lighting is soft and natural, with a blurred office background. The aesthetic is clean, professional, and humanitarian, fitting the FoodLink brand identity of purposeful agency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEo0yhVnq-n40W_Kdmi5_9emSCFBbb_MvEweP80RwfATkFrurNCI7ufgk2-MInfA2IocGPzqoZEYtT9NrE8T_DuzPcniM6fdm1tHwxXgO9Le1fX0bb96oSn4YCKJEtjFW-wlKjNjJFSyHGQJDZhxemD0_sA9wb4F4Z4gqrHtjpfPqbVGeEZ6o2EEdauevYfbDR6MkCZJaFc3Ossq18JB-CQh-nddPVAzMo8zwXbxLduDcoLqa8oJZ3ulsVrH8f5oz5LPc6kJmoEvs"/>
+</div>
+</div>
+</header>
+<main class="min-h-[calc(100vh-3.5rem)] w-full px-margin-desktop py-stack-lg">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter max-w-7xl mx-auto">
+<!-- Left Column: Demand Reporting Form -->
+<section class="lg:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg flex flex-col gap-stack-lg">
+<header>
+<div class="flex items-center gap-stack-sm mb-unit">
+<span class="inline-block px-stack-md py-unit bg-tertiary-container text-on-tertiary-container font-status-indicator text-status-indicator rounded-lg">High Demand Area</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-stack-sm">Report Food Need</h2>
+<p class="text-on-surface-variant font-body-md">Connect surplus food from nearby partners to your community's immediate needs. Accurate reports ensure faster coordination.</p>
+</header>
+<form class="space-y-stack-lg">
+<!-- Location -->
+<div class="space-y-stack-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">Delivery / Distribution Location</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-stack-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">location_on</span>
+<input class="w-full pl-12 pr-stack-md py-stack-md bg-surface border-2 border-outline-variant rounded-lg focus:border-primary focus:ring-0 transition-all font-body-md" placeholder="Enter street address or facility name" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- People Count -->
+<div class="space-y-stack-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">Estimated People to Serve</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-stack-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">groups</span>
+<input class="w-full pl-12 pr-stack-md py-stack-md bg-surface border-2 border-outline-variant rounded-lg focus:border-primary focus:ring-0 transition-all font-body-md" placeholder="e.g. 150" type="number"/>
+</div>
+</div>
+<!-- Contact Number -->
+<div class="space-y-stack-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">On-Site Coordinator Phone</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-stack-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">call</span>
+<input class="w-full pl-12 pr-stack-md py-stack-md bg-surface border-2 border-outline-variant rounded-lg focus:border-primary focus:ring-0 transition-all font-body-md" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+</div>
+<!-- Urgency Level -->
+<div class="space-y-stack-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">Urgency Level</label>
+<div class="grid grid-cols-3 gap-stack-sm">
+<label class="cursor-pointer">
+<input checked="" class="hidden peer" name="urgency" type="radio"/>
+<div class="flex flex-col items-center gap-unit p-stack-md rounded-lg border-2 border-outline-variant bg-surface hover:bg-surface-variant/20 transition-all peer-checked:border-primary-container peer-checked:bg-primary-container/10">
+<span class="material-symbols-outlined text-outline" data-icon="schedule">schedule</span>
+<span class="font-label-caps text-label-caps">Standard</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="hidden peer" name="urgency" type="radio"/>
+<div class="flex flex-col items-center gap-unit p-stack-md rounded-lg border-2 border-outline-variant bg-surface hover:bg-surface-variant/20 transition-all peer-checked:border-secondary-container peer-checked:bg-secondary-container/10">
+<span class="material-symbols-outlined text-secondary" data-icon="warning">warning</span>
+<span class="font-label-caps text-label-caps">Urgent</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="hidden peer" name="urgency" type="radio"/>
+<div class="flex flex-col items-center gap-unit p-stack-md rounded-lg border-2 border-outline-variant bg-surface hover:bg-surface-variant/20 transition-all peer-checked:border-tertiary-container peer-checked:bg-tertiary-container/10">
+<span class="material-symbols-outlined text-tertiary urgent-pulse" data-icon="error">error</span>
+<span class="font-label-caps text-label-caps">Critical</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Food Type Tags -->
+<div class="space-y-stack-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">Requested Food Types</label>
+<div class="flex flex-wrap gap-stack-sm">
+<button class="px-stack-md py-stack-sm rounded-full border border-outline-variant font-body-md hover:bg-primary hover:text-white transition-colors" type="button">Hot Meals</button>
+<button class="px-stack-md py-stack-sm rounded-full border border-outline-variant font-body-md bg-primary text-white" type="button">Fresh Produce</button>
+<button class="px-stack-md py-stack-sm rounded-full border border-outline-variant font-body-md hover:bg-primary hover:text-white transition-colors" type="button">Dry Goods</button>
+<button class="px-stack-md py-stack-sm rounded-full border border-outline-variant font-body-md hover:bg-primary hover:text-white transition-colors" type="button">Dairy &amp; Eggs</button>
+<button class="px-stack-md py-stack-sm rounded-full border border-outline-variant font-body-md hover:bg-primary hover:text-white transition-colors" type="button">Bakery</button>
+<button class="material-symbols-outlined w-10 h-10 flex items-center justify-center rounded-full border border-dashed border-outline hover:bg-surface-variant/20 transition-colors" data-icon="add" type="button">add</button>
+</div>
+</div>
+<!-- CTA -->
+<div class="pt-stack-md border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary font-headline-sm text-headline-sm py-stack-md rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-stack-sm" type="submit">
+<span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+                            Post Need Now
+                        </button>
+<p class="text-center font-label-caps text-label-caps text-on-surface-variant mt-stack-md">Verification code will be sent to the on-site number provided.</p>
+</div>
+</form>
+</section>
+<!-- Right Column: Live Map & Activity -->
+<aside class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Map Container -->
+<div class="relative h-[480px] bg-surface-dim border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="absolute inset-0 z-0 bg-cover bg-center" data-location="Chicago" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBTnouEPNfUBWWh6buGnbJZW5aU7i36_ZqcsEmpQD-x2zEzWWmvLgV1p7Cq-iReHmrT2MQ0E0MrNu_-q0LIjo4vfdv4CmujhAr2YZzrpVcGi__lF7AImPs1WFxoqSgoIsomxt7BvRdofwdD7Yw8MABPPuWN9gmrxws494jCT60mRK7JXwWYaT-Rpl5GLSomziA73qjQ8flnGCxQIOJfKXVYMnIc_UCLeEsc_u9_evMI7nMKmtN89sJS-Fjs-2gujTBEZxRDTEmfg2Q')"></div>
+<!-- Floating Map Controls -->
+<div class="absolute top-stack-md right-stack-md flex flex-col gap-unit">
+<button class="w-10 h-10 bg-white border border-outline-variant flex items-center justify-center shadow-sm hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<button class="w-10 h-10 bg-white border border-outline-variant flex items-center justify-center shadow-sm hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+</div>
+<!-- Active Markers (Simulated) -->
+<div class="absolute top-1/4 left-1/3">
+<div class="relative group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="location_on" data-weight="fill">location_on</span>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-unit w-48 bg-white p-stack-sm rounded-lg shadow-lg border border-outline-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+<p class="font-label-caps text-label-caps text-primary">Green Grocer Hub</p>
+<p class="text-[12px] text-on-surface-variant">25kg Fresh Salad Mix</p>
+</div>
+</div>
+</div>
+<div class="absolute bottom-1/3 right-1/4">
+<div class="relative group cursor-pointer">
+<span class="material-symbols-outlined text-secondary text-4xl" data-icon="location_on" data-weight="fill">location_on</span>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-unit w-48 bg-white p-stack-sm rounded-lg shadow-lg border border-outline-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+<p class="font-label-caps text-label-caps text-secondary">Downtown Bakery</p>
+<p class="text-[12px] text-on-surface-variant">50+ Pastries available</p>
+</div>
+</div>
+</div>
+<!-- Legend Overlay -->
+<div class="absolute bottom-stack-md left-stack-md bg-white/90 backdrop-blur-sm border border-outline-variant p-stack-sm rounded-lg">
+<h4 class="font-label-caps text-label-caps text-on-surface mb-unit">Nearby Surplus</h4>
+<div class="flex items-center gap-stack-sm">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-[12px] text-on-surface-variant">Verified Partners</span>
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="text-[12px] text-on-surface-variant">Active Surplus</span>
+</div>
+</div>
+</div>
+<!-- Recent Activity / Nearby Feed -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-stack-md overflow-hidden">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="font-headline-sm text-headline-sm">Nearby Availability</h3>
+<span class="material-symbols-outlined text-primary" data-icon="refresh">refresh</span>
+</div>
+<div class="space-y-stack-sm">
+<!-- Item 1 -->
+<div class="bg-surface-container-lowest p-stack-md rounded-lg border border-outline-variant flex items-center justify-between hover:border-primary transition-all group">
+<div class="flex gap-stack-md">
+<div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="bakery_dining">bakery_dining</span>
+</div>
+<div>
+<h4 class="font-body-md font-semibold text-on-surface">Whole Grain Breads</h4>
+<p class="text-[14px] text-on-surface-variant">Artisan Bakery • 0.8 miles away</p>
+</div>
+</div>
+<button class="px-stack-md py-unit bg-primary-container text-on-primary-container rounded font-label-caps text-label-caps group-hover:bg-primary group-hover:text-white transition-colors">Claim</button>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-lowest p-stack-md rounded-lg border border-outline-variant flex items-center justify-between hover:border-primary transition-all group">
+<div class="flex gap-stack-md">
+<div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="restaurant">restaurant</span>
+</div>
+<div>
+<h4 class="font-body-md font-semibold text-on-surface">Prepared Lunch Boxes</h4>
+<p class="text-[14px] text-on-surface-variant">Corporate Kitchen • 1.2 miles away</p>
+</div>
+</div>
+<button class="px-stack-md py-unit bg-primary-container text-on-primary-container rounded font-label-caps text-label-caps group-hover:bg-primary group-hover:text-white transition-colors">Claim</button>
+</div>
+</div>
+<button class="w-full mt-stack-md text-primary font-label-caps text-label-caps hover:underline">View all matching surplus</button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer Status Bar -->
+<footer class="w-full bg-inverse-surface text-inverse-on-surface px-margin-desktop py-stack-sm flex justify-between items-center fixed bottom-0 z-50">
+<div class="flex items-center gap-stack-lg">
+<div class="flex items-center gap-unit">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-[12px] font-medium">System Online</span>
+</div>
+<div class="flex items-center gap-unit">
+<span class="material-symbols-outlined text-[16px]" data-icon="local_shipping">local_shipping</span>
+<span class="text-[12px] font-medium">12 Active Deliveries</span>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<span class="text-[12px] font-medium">Need Help?</span>
+<button class="bg-primary px-stack-md py-unit rounded font-label-caps text-label-caps">Support Chat</button>
+</div>
+</footer>
+<script>
+        // Micro-interactions for form controls
+        document.querySelectorAll('input[name="urgency"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                // Logic can be added here for dynamic urgency effects
+                console.log('Urgency updated:', e.target.closest('label').innerText.trim());
+            });
+        });
+
+        // Simplified interaction for "Post Need Now"
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin" data-icon="sync">sync</span> Processing...`;
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = `<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span> Demand Posted!`;
+                btn.classList.replace('bg-primary', 'bg-green-600');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    btn.classList.replace('bg-green-600', 'bg-primary');
+                    btn.disabled = false;
+                }, 3000);
+            }, 1500);
+        });
+    </script>
+</body></html>

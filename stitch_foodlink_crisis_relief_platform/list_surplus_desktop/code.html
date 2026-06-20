@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodLink | Create Surplus Listing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Atkinson+Hyperlegible+Next:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#684000",
+                        "tertiary-fixed": "#ffdad6",
+                        "tertiary": "#a50710",
+                        "on-surface-variant": "#3e4947",
+                        "primary-fixed": "#9cf2e8",
+                        "on-surface": "#111c2d",
+                        "inverse-surface": "#263143",
+                        "error": "#ba1a1a",
+                        "secondary": "#855300",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb4ab",
+                        "outline-variant": "#bdc9c6",
+                        "on-primary-fixed-variant": "#00504a",
+                        "inverse-on-surface": "#ecf1ff",
+                        "primary-fixed-dim": "#80d5cb",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00201d",
+                        "surface-container-highest": "#d8e3fb",
+                        "surface-bright": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#93000b",
+                        "outline": "#6e7977",
+                        "secondary-container": "#fea619",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#80d5cb",
+                        "tertiary-container": "#c92926",
+                        "on-tertiary-container": "#ffe4e0",
+                        "surface-variant": "#d8e3fb",
+                        "surface-tint": "#006a63",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface-dim": "#cfdaf2",
+                        "background": "#f9f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-fixed": "#410002",
+                        "surface-container": "#e7eeff",
+                        "primary": "#005c55",
+                        "surface-container-high": "#dee8ff",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#0f766e",
+                        "on-background": "#111c2d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#a3faef",
+                        "surface-container-low": "#f0f3ff",
+                        "secondary-fixed": "#ffddb8",
+                        "on-secondary-fixed": "#2a1700",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "status-indicator": ["Atkinson Hyperlegible Next"],
+                        "label-caps": ["Atkinson Hyperlegible Next"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "status-indicator": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .slide-to-confirm {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        input:focus, select:focus, textarea:focus {
+            border-width: 2px !important;
+            outline: none !important;
+            border-color: #005c55 !important;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-margin-desktop h-14 fixed top-0 z-50">
+<div class="flex items-center gap-stack-md">
+<button class="p-unit rounded-full hover:bg-surface-variant/50 transition-colors duration-200">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">FoodLink</h1>
+</div>
+<div class="flex items-center gap-stack-lg">
+<nav class="hidden md:flex gap-stack-lg items-center">
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">DASHBOARD</a>
+<a class="text-primary font-label-caps text-label-caps border-b-2 border-primary pb-1" href="#">POST SURPLUS</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">LOGISTICS</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">IMPACT</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="p-unit rounded-full hover:bg-surface-variant/50 transition-colors duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<span class="text-on-primary-container font-bold text-xs">RK</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Grid -->
+<main class="pt-24 pb-12 px-margin-desktop max-w-[1440px] mx-auto grid grid-cols-12 gap-gutter min-h-screen">
+<!-- Left Column: Surplus Form -->
+<div class="col-span-12 lg:col-span-8">
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-lg">
+<div class="mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-unit">Report Surplus Food</h2>
+<p class="text-on-surface-variant font-body-md">Fill in the details for the immediate pickup request. Real-time matching is active.</p>
+</div>
+<form class="space-y-stack-lg">
+<!-- Section 1: Food Details -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="space-y-unit">
+<label class="font-label-caps text-label-caps text-on-surface-variant">FOOD ITEM NAME</label>
+<input class="w-full bg-surface border border-outline-variant p-stack-md rounded-lg font-body-md text-on-surface focus:ring-0" placeholder="e.g. Fresh Artisan Bread Rolls" type="text"/>
+</div>
+<div class="space-y-unit">
+<label class="font-label-caps text-label-caps text-on-surface-variant">TYPE / CATEGORY</label>
+<select class="w-full bg-surface border border-outline-variant p-stack-md rounded-lg font-body-md text-on-surface focus:ring-0">
+<option>Bakery & Grains</option>
+<option>Cooked Meals</option>
+<option>Produce</option>
+<option>Dairy & Eggs</option>
+</select>
+</div>
+</div>
+<!-- Section 2: Quantity & Timing -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="space-y-unit">
+<label class="font-label-caps text-label-caps text-on-surface-variant">ESTIMATED QUANTITY (SERVINGS)</label>
+<div class="flex items-center">
+<input class="w-full bg-surface border border-outline-variant p-stack-md rounded-l-lg font-body-md text-on-surface focus:ring-0" placeholder="25" type="number"/>
+<span class="bg-surface-container-high border-y border-r border-outline-variant p-stack-md rounded-r-lg font-label-caps text-label-caps text-on-surface-variant">PORTIONS</span>
+</div>
+</div>
+<div class="space-y-unit">
+<label class="font-label-caps text-label-caps text-on-surface-variant">AVAILABLE UNTIL (EXPIRY)</label>
+<div class="relative">
+<input class="w-full bg-surface border border-outline-variant p-stack-md rounded-lg font-body-md text-on-surface focus:ring-0" type="datetime-local"/>
+</div>
+</div>
+</div>
+<!-- Section 3: Address & Handling -->
+<div class="space-y-unit">
+<label class="font-label-caps text-label-caps text-on-surface-variant">PICKUP ADDRESS & SPECIAL INSTRUCTIONS</label>
+<textarea class="w-full bg-surface border border-outline-variant p-stack-md rounded-lg font-body-md text-on-surface focus:ring-0" placeholder="Kitchen Rear Entrance, Loading Bay B. Mention 'FoodLink' at the gate." rows="3"></textarea>
+</div>
+<!-- Urgency Level Selection -->
+<div class="space-y-stack-md">
+<label class="font-label-caps text-label-caps text-on-surface-variant">URGENCY STATUS</label>
+<div class="grid grid-cols-3 gap-stack-md">
+<button class="flex flex-col items-center justify-center p-stack-md border-2 border-primary bg-primary-container/10 rounded-xl transition-all" type="button">
+<span class="material-symbols-outlined text-primary mb-unit" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-label-caps text-label-caps text-primary">CRITICAL</span>
+<span class="text-[10px] text-primary/80">Immediate Pickup</span>
+</button>
+<button class="flex flex-col items-center justify-center p-stack-md border border-outline-variant bg-surface rounded-xl hover:border-secondary transition-all" type="button">
+<span class="material-symbols-outlined text-secondary mb-unit">schedule</span>
+<span class="font-label-caps text-label-caps text-on-secondary-fixed-variant">STABLE</span>
+<span class="text-[10px] text-on-surface-variant">Within 3 Hours</span>
+</button>
+<button class="flex flex-col items-center justify-center p-stack-md border border-outline-variant bg-surface rounded-xl hover:border-outline transition-all" type="button">
+<span class="material-symbols-outlined text-outline mb-unit">inventory_2</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">END OF DAY</span>
+<span class="text-[10px] text-on-surface-variant">Flexible</span>
+</button>
+</div>
+</div>
+<!-- Slide to Confirm Action -->
+<div class="pt-stack-lg">
+<div class="relative bg-surface-container-high border border-outline-variant h-[72px] rounded-full p-unit flex items-center overflow-hidden" id="confirm-slider">
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase opacity-50">Slide to Post Listing</span>
+</div>
+<div class="relative z-10 w-16 h-16 bg-primary rounded-full flex items-center justify-center cursor-pointer shadow-lg active:scale-95 transition-transform duration-150" id="slider-handle">
+<span class="material-symbols-outlined text-on-primary">arrow_forward</span>
+</div>
+<div class="absolute left-0 top-0 h-full bg-primary/10 w-0 pointer-events-none" id="slider-progress"></div>
+</div>
+</div>
+</form>
+</div>
+</div>
+<!-- Right Column: Live NGO Match Feed -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-lg sticky top-24">
+<div class="flex items-center justify-between mb-stack-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Active NGO Needs</h3>
+<div class="flex items-center gap-unit px-stack-sm py-1 bg-tertiary-container text-on-tertiary-container rounded-full animate-pulse">
+<span class="w-2 h-2 bg-on-tertiary-container rounded-full"></span>
+<span class="text-[10px] font-bold">LIVE</span>
+</div>
+</div>
+<!-- Live Feed List -->
+<div class="space-y-stack-md">
+<!-- NGO Need Card 1 -->
+<div class="p-stack-md border border-outline-variant rounded-lg bg-surface hover:border-primary transition-all group">
+<div class="flex justify-between items-start mb-unit">
+<span class="font-status-indicator text-status-indicator px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded">STREET HEALERS</span>
+<span class="text-tertiary font-label-caps text-label-caps">0.4 MILES</span>
+</div>
+<p class="font-body-md text-on-surface font-semibold mb-stack-sm">Require Cooked Meals for 50 people</p>
+<div class="flex items-center gap-stack-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">alarm</span>
+<span class="text-xs font-label-caps">URGENT: CLOSES IN 42 MIN</span>
+</div>
+</div>
+<!-- NGO Need Card 2 -->
+<div class="p-stack-md border border-outline-variant rounded-lg bg-surface hover:border-primary transition-all group">
+<div class="flex justify-between items-start mb-unit">
+<span class="font-status-indicator text-status-indicator px-2 py-0.5 bg-surface-container-high text-on-surface-variant rounded">CITY SHELTER WEST</span>
+<span class="text-on-surface-variant font-label-caps text-label-caps">1.2 MILES</span>
+</div>
+<p class="font-body-md text-on-surface font-semibold mb-stack-sm">Fresh Produce or Bread Surplus</p>
+<div class="flex items-center gap-stack-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-xs font-label-caps">STABLE: NEED UNTIL 9PM</span>
+</div>
+</div>
+<!-- NGO Need Card 3 -->
+<div class="p-stack-md border border-outline-variant rounded-lg bg-surface hover:border-primary transition-all group opacity-75">
+<div class="flex justify-between items-start mb-unit">
+<span class="font-status-indicator text-status-indicator px-2 py-0.5 bg-surface-container-high text-on-surface-variant rounded">YOUTH ALLIANCE</span>
+<span class="text-on-surface-variant font-label-caps text-label-caps">2.1 MILES</span>
+</div>
+<p class="font-body-md text-on-surface font-semibold mb-stack-sm">Snacks & Dry Goods</p>
+<div class="flex items-center gap-stack-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-xs font-label-caps">STABLE: OPEN 24/7</span>
+</div>
+</div>
+</div>
+<!-- Real-time Status Card -->
+<div class="mt-stack-lg p-stack-md bg-primary-container/10 border-l-4 border-primary rounded-r-lg">
+<div class="flex gap-stack-md items-start">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<div>
+<p class="font-label-caps text-label-caps text-primary mb-1">DASHBOARD INSIGHT</p>
+<p class="text-xs text-on-surface-variant leading-tight">Your current surplus of "Bakery & Grains" has a 94% match rate with nearby needs. Posting now ensures pickup within 15 minutes.</p>
+</div>
+</div>
+</div>
+<!-- Local Activity Map Placeholder -->
+<div class="mt-stack-lg rounded-xl overflow-hidden h-40 relative group cursor-pointer border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist topographical map of a metropolitan city area with high-contrast teal and slate color palette. Small glowing pinpoints indicate food recovery centers and active restaurant kitchens, communicating a high-tech humanitarian logistics network. The lighting is bright and professional, evoking a digital dashboard interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMz_lHo9qmXPZ5VO8Re9TueNTIkBxeIiXhIUSa-Utdd1RTe3um5XDgPTXkrh0N08i5tWlsZ3S3XA6jhMjwKKcxw60a_rLyrMHCu1b3IFYEtjvVgZ-8LaarJI99ObpnQsONaB9W_tfU4FDgRpn_y9imbQzA_HSOcsCtG3Hc6lzkbk1O3TZMqSnsmZb5ZXUGN9RrX8OdFx8pDUbltn9Wdy6vtZWKq_prBkG0ATLMj8bJQq7KgkSpX3zV_vTRNPYrOK4p70jRdQC-oZY"/>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-all flex items-center justify-center">
+<div class="bg-surface-container-lowest px-stack-md py-stack-sm rounded-full shadow-lg flex items-center gap-unit">
+<span class="material-symbols-outlined text-primary text-sm">location_on</span>
+<span class="font-label-caps text-[10px] text-on-surface">VIEW NETWORK MAP</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Notification (Hidden by default, used for interaction) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-stack-lg py-stack-md rounded-lg shadow-2xl flex items-center gap-stack-md transform translate-y-32 transition-transform duration-500 z-[100]" id="success-toast">
+<span class="material-symbols-outlined text-primary-fixed">check_circle</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-sm">Listing Published Successfully</span>
+<span class="text-xs opacity-80">3 NGOs within 1 mile have been notified.</span>
+</div>
+</div>
+<script>
+        // Simple Slide-to-Confirm Interaction Logic
+        const slider = document.getElementById('confirm-slider');
+        const handle = document.getElementById('slider-handle');
+        const progress = document.getElementById('slider-progress');
+        const toast = document.getElementById('success-toast');
+        
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        const maxScroll = slider.offsetWidth - handle.offsetWidth - 8; // Adjusting for padding
+
+        handle.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX - currentX;
+            handle.classList.remove('transition-transform');
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            let moveX = e.clientX - startX;
+            if (moveX < 0) moveX = 0;
+            if (moveX > maxScroll) moveX = maxScroll;
+            
+            currentX = moveX;
+            handle.style.transform = `translateX(${currentX}px)`;
+            progress.style.width = `${currentX + 32}px`;
+
+            if (currentX >= maxScroll - 5) {
+                completeAction();
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            if (currentX < maxScroll - 5) {
+                currentX = 0;
+                handle.classList.add('transition-transform');
+                handle.style.transform = `translateX(0px)`;
+                progress.style.width = `0px`;
+            }
+        });
+
+        function completeAction() {
+            isDragging = false;
+            handle.style.pointerEvents = 'none';
+            handle.style.backgroundColor = '#855300'; // Transition to a confirmed state
+            handle.innerHTML = '<span class="material-symbols-outlined text-on-primary">check</span>';
+            
+            // Show Success Toast
+            toast.classList.remove('translate-y-32');
+            
+            setTimeout(() => {
+                // In a real app, redirect or reset form
+                console.log("Listing Submitted");
+            }, 3000);
+        }
+
+        // Mobile Responsive adjustments
+        window.addEventListener('resize', () => {
+            // Recalculate maxScroll on resize if needed
+        });
+    </script>
+</body></html>

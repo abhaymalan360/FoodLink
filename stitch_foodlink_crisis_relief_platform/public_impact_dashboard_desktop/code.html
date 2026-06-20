@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodLink | Public Impact Dashboard</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Atkinson+Hyperlegible+Next:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#684000",
+                    "tertiary-fixed": "#ffdad6",
+                    "tertiary": "#a50710",
+                    "on-surface-variant": "#3e4947",
+                    "primary-fixed": "#9cf2e8",
+                    "on-surface": "#111c2d",
+                    "inverse-surface": "#263143",
+                    "error": "#ba1a1a",
+                    "secondary": "#855300",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb4ab",
+                    "outline-variant": "#bdc9c6",
+                    "on-primary-fixed-variant": "#00504a",
+                    "inverse-on-surface": "#ecf1ff",
+                    "primary-fixed-dim": "#80d5cb",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#00201d",
+                    "surface-container-highest": "#d8e3fb",
+                    "surface-bright": "#f9f9ff",
+                    "on-tertiary-fixed-variant": "#93000b",
+                    "outline": "#6e7977",
+                    "secondary-container": "#fea619",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#80d5cb",
+                    "tertiary-container": "#c92926",
+                    "on-tertiary-container": "#ffe4e0",
+                    "surface-variant": "#d8e3fb",
+                    "surface-tint": "#006a63",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "surface-dim": "#cfdaf2",
+                    "background": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "on-tertiary-fixed": "#410002",
+                    "surface-container": "#e7eeff",
+                    "primary": "#005c55",
+                    "surface-container-high": "#dee8ff",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#0f766e",
+                    "on-background": "#111c2d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#a3faef",
+                    "surface-container-low": "#f0f3ff",
+                    "secondary-fixed": "#ffddb8",
+                    "on-secondary-fixed": "#2a1700",
+                    "secondary-fixed-dim": "#ffb95f",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "status-indicator": ["Atkinson Hyperlegible Next"],
+                    "label-caps": ["Atkinson Hyperlegible Next"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "status-indicator": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .impact-scroll::-webkit-scrollbar { display: none; }
+        .impact-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .map-container svg {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+        }
+        
+        .slide-confirm {
+            background: linear-gradient(90deg, #005c55 0%, #0f766e 100%);
+        }
+
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Anchor -->
+<header class="bg-surface sticky top-0 z-50 border-b border-outline-variant flex justify-between items-center w-full px-margin-desktop h-16">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-primary text-3xl">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">FoodLink</h1>
+</div>
+<nav class="hidden md:flex items-center gap-stack-lg">
+<a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1" href="#">Impact</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Logistics</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Partners</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Reports</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-variant/50 rounded-full transition-colors">notifications</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs">FL</div>
+</div>
+</header>
+<main class="min-h-screen pb-stack-lg">
+<!-- Hero Section: Stats Grid -->
+<section class="px-margin-desktop py-stack-lg bg-surface-bright relative overflow-hidden">
+<div class="absolute top-0 right-0 -mr-24 -mt-24 opacity-10">
+<span class="material-symbols-outlined text-[300px] text-primary">eco</span>
+</div>
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-5 space-y-stack-md z-10">
+<span class="inline-block px-3 py-1 bg-secondary-container text-on-secondary-container rounded-lg font-status-indicator text-status-indicator uppercase tracking-wider">Public Dashboard</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Measuring Real-Time <br/><span class="text-primary">Civic Emergency Response</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">Our unified logistics engine coordinates surplus food recovery between commercial kitchens and community organizations at scale.</p>
+<div class="pt-stack-md">
+<button class="bg-primary text-on-primary px-stack-lg py-4 rounded-xl font-headline-sm text-headline-sm flex items-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-95">
+                            Join the Network <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-stack-md z-10">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-48 transition-all hover:border-primary">
+<div>
+<span class="material-symbols-outlined text-primary text-3xl">restaurant</span>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mt-2">Meals Saved</h3>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface">1.2M</div>
+<div class="text-primary font-status-indicator text-status-indicator flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +14% this month
+                            </div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-48 transition-all hover:border-primary">
+<div>
+<span class="material-symbols-outlined text-tertiary text-3xl">delete_sweep</span>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mt-2">Waste Prevented</h3>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface">84k <span class="text-body-md font-normal text-on-surface-variant">kg</span></div>
+<div class="text-tertiary font-status-indicator text-status-indicator flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">monitoring</span> High Impact Area
+                            </div>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-48 transition-all hover:border-primary">
+<div>
+<span class="material-symbols-outlined text-secondary text-3xl">groups</span>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mt-2">Communities Served</h3>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface">12</div>
+<div class="text-secondary font-status-indicator text-status-indicator flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">map</span> Nationwide Expansion
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Map Section -->
+<section class="px-margin-desktop py-stack-lg max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Map Container -->
+<div class="md:w-2/3 bg-surface-container-low rounded-xl border border-outline-variant p-stack-lg min-h-[600px] relative">
+<div class="flex justify-between items-start mb-stack-md">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Regional Activity</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Live density of surplus recovery across India.</p>
+</div>
+<div class="flex gap-2">
+<span class="w-3 h-3 bg-primary rounded-full animate-pulse"></span>
+<span class="font-label-caps text-label-caps text-primary">Live Operations</span>
+</div>
+</div>
+<div class="flex items-center justify-center w-full h-[500px]">
+<!-- Using a high-quality placeholder for the India Map -->
+<img class="w-full h-full object-contain" data-alt="A highly detailed, professional interactive choropleth map of India, designed with a modern humanitarian dashboard aesthetic. The map uses a sophisticated color palette of deep teals and slate grays, with varying intensities of teal representing food recovery density across different states. Clean, minimalist typography labels key regions like Maharashtra, Karnataka, and Delhi. The background is a crisp light-mode neutral, and the overall style is authoritative, data-driven, and polished for a corporate sustainability report." data-location="India" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH0lmCOEuJtATUBPPREWQCakXsoRRnygfq3iSqNStR9BWxQ-xDhiXtbiq6zSQEk80k-tPMhvOLCuTQ1D9LhNBC27n9hWAvz6kgnbmlXi_NmUe0qq9HVx2erk_2vJYaJhmYKAmL1cjLfX1WXpwpIExO6HoxSk5rmFHMMZ-0osdgiwbDkv9_u8UOX33cTkLd9LT5tXafxqx4cbEaPz9W3v4Bjk7-O3TPQYf2jAutJNFLRpMEJPGwwksOfs8Sb_X7fpU7gea_TGHjEc8"/>
+</div>
+<!-- Map Legend -->
+<div class="absolute bottom-6 left-6 p-stack-sm bg-white border border-outline-variant rounded-lg space-y-2">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Impact Intensity</p>
+<div class="flex items-center gap-2">
+<div class="w-24 h-2 bg-gradient-to-r from-primary-fixed to-primary rounded-full"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold text-on-surface-variant">
+<span>LOW</span>
+<span>HIGH</span>
+</div>
+</div>
+</div>
+<!-- Live Feed / Legend Column -->
+<div class="md:w-1/3 flex flex-col gap-gutter">
+<div class="bg-surface-container-highest rounded-xl p-stack-md border border-outline-variant">
+<h4 class="font-headline-sm text-headline-sm mb-stack-sm">Current Active Hubs</h4>
+<div class="space-y-stack-md">
+<div class="flex items-center justify-between p-3 bg-white rounded-lg border border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span class="font-body-md font-semibold">Mumbai Metro</span>
+</div>
+<span class="font-label-caps text-primary">Active</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white rounded-lg border border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span class="font-body-md font-semibold">Bangalore Central</span>
+</div>
+<span class="font-label-caps text-primary">Active</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white rounded-lg border border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-secondary rounded-full"></div>
+<span class="font-body-md font-semibold">Delhi NCR</span>
+</div>
+<span class="font-label-caps text-secondary">Dispatching</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white rounded-lg border border-outline-variant opacity-50">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-outline rounded-full"></div>
+<span class="font-body-md font-semibold">Hyderabad South</span>
+</div>
+<span class="font-label-caps text-on-surface-variant">Scheduled</span>
+</div>
+</div>
+</div>
+<div class="flex-grow bg-inverse-surface text-inverse-on-surface rounded-xl p-stack-md flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-4xl mb-2">emergency_share</span>
+<h4 class="font-headline-sm text-headline-sm">Surplus Emergency?</h4>
+<p class="font-body-md mt-2 mb-4">Are you a commercial kitchen with more than 15kg of surplus today?</p>
+<button class="w-full bg-secondary-container text-on-secondary-container py-3 rounded-lg font-bold hover:brightness-110 transition-all">Report Immediate Surplus</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Horizontal Impact Timeline -->
+<section class="py-stack-lg overflow-hidden">
+<div class="px-margin-desktop max-w-7xl mx-auto mb-stack-md flex justify-between items-end">
+<div>
+<h3 class="font-headline-md text-headline-md">Recent Impact Moments</h3>
+<p class="font-body-md text-on-surface-variant">Real-time verification of community distributions.</p>
+</div>
+<div class="flex gap-2">
+<button class="material-symbols-outlined p-2 border border-outline rounded-full hover:bg-surface-variant transition-colors" id="scrollLeft">chevron_left</button>
+<button class="material-symbols-outlined p-2 border border-outline rounded-full hover:bg-surface-variant transition-colors" id="scrollRight">chevron_right</button>
+</div>
+</div>
+<div class="impact-scroll flex gap-gutter px-margin-desktop overflow-x-auto snap-x snap-mandatory py-4" id="impactTimeline">
+<!-- Card 1 -->
+<div class="snap-start min-w-[320px] bg-white border border-outline-variant p-stack-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="px-2 py-1 bg-surface-container-high rounded font-label-caps text-primary">2 min ago</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-body-md text-on-surface mb-4"><strong>Bistro 22</strong> just provided 40 meals to <strong>City Shelter</strong>.</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A top-down shot of a high-quality aluminum catering tray being filled with nutritious, steaming hot vegetable biryani in a professional restaurant kitchen environment. Soft warm lighting creates an inviting and clean aesthetic. The focus is on the textures of the food and the cleanliness of the preparation area, emphasizing safety and care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_LwF_E25lrtrfTN6sSS3IVSwIUfQr5jxTI9HWeH7ZOvXkgvLy4S0it7ygrZLuwf_3jg62oHxoemyyOkAC9L78N8YbSoXNm-tm97yybb-kIGoW18D93umdlL_r_LlzCBPBeLyvGvO80iOUj_n5x4PcBh3xsukCAUufYPrOJLwgfxhB4pB72dlDmQH3KejLxm2McFREiBh-jPrUgPctvIucgP-ewoGHoJWJHRmR9POFTISDdiA0aUeJfaIUCcAvsuLGF8lW7Pv0Cow"/>
+</div>
+<div class="text-xs">
+<p class="font-bold">Claim Verified</p>
+<p class="text-on-surface-variant">Logistics ID: #8492-A</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="snap-start min-w-[320px] bg-white border border-outline-variant p-stack-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="px-2 py-1 bg-surface-container-high rounded font-label-caps text-primary">15 min ago</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-body-md text-on-surface mb-4"><strong>Grand Plaza Hotel</strong> donated 12kg of surplus baked goods to <strong>Unity Food Bank</strong>.</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional baker in a clean white uniform carefully packaging a variety of fresh artisanal breads and pastries into sustainable brown paper bags. The setting is a brightly lit, modern hotel bakery. The lighting is crisp and natural, highlighting the golden-brown crusts of the breads and the orderly, efficient logistics process." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN1_9sNefT6r5llkWMef0PaqNtjucGhpTzSxYdCDz2g4HZsyZK5prmeOmv3Aa-FNlvzQ1WCyxzmV2f5VQmDzhOW7igJBDHexyqI6euvA0-UHVhhqG9sBwa0XwAtyhDavUcjZZTTE49lb9KKS2SpAITaEwOsbyEFcsTw-a_UtZmbaSfYpyqhhCNsla-5BdpGo3fTnBKnDVGQdWpR2YqY0swQD73ON1m6--s-apIbsWTq9gdpKjQoa-RyaQlwryu6UZMYSF2uMgGLDA"/>
+</div>
+<div class="text-xs">
+<p class="font-bold">Logistics Complete</p>
+<p class="text-on-surface-variant">Logistics ID: #8491-B</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="snap-start min-w-[320px] bg-white border border-outline-variant p-stack-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="px-2 py-1 bg-surface-container-high rounded font-label-caps text-primary">42 min ago</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-body-md text-on-surface mb-4"><strong>Olive Garden</strong> redistributed 25 dinner sets to <strong>St. Jude's Community Center</strong>.</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up of a delivery driver's gloved hand handing over a stack of neatly labeled, eco-friendly food containers to a smiling community volunteer at a modern community center. The background is softly blurred, focusing on the moment of exchange. The color palette is warm and optimistic, featuring natural daylight and teal accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaLGh0YPqvOuZPOmmncSGG96KZTxaV2xz9gD1kbxb-5OvqI9tdbGPViL8kRCKbpTJuCTlINDeg17ObGOcp93nn4nJMYDAUd_BMfwl4lRJhHKBAY7qqMxlApmesSy6Y__4LqwT78M9INNIbO2h2uV8IeiqyHb7Qusc4bqxQ0YqgO6BmiKBQa4jRfEW1Bs0LuotTwbKqI0HGvjPSDEifg3Tg5PM04y4asLCDZkrQWU773BnNDSjwgTf6Q2lCRpxPqjfpeBMaMqqY9V8"/>
+</div>
+<div class="text-xs">
+<p class="font-bold">Impact Registered</p>
+<p class="text-on-surface-variant">Logistics ID: #8490-C</p>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="snap-start min-w-[320px] bg-white border border-outline-variant p-stack-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="px-2 py-1 bg-surface-container-high rounded font-label-caps text-primary">1 hr ago</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-body-md text-on-surface mb-4"><strong>Catering Co.</strong> completed a 60-meal distribution for the <strong>Migrant Support Fund</strong>.</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="An wide angle shot of a clean, organized distribution line where volunteers are setting out hundreds of pre-packed healthy meals on white tables. The lighting is bright and even, conveying a sense of large-scale humanitarian efficiency. The atmosphere is purposeful and orderly, consistent with a civic emergency response center." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABSyGaaWXX-yCygoJO8B95GL0b1MtcL_3ylBphRTc9F3fsJtzmlh7j9JuIT2bQYJ0ZZfBJNDn1fxxgDPLzOTGgdl-vImeDq5qZiVFS2hqovJvFAySXySCk_2K6qDZRjbVeLO_ouyrPLkyC-cAyU2XATgxkcw3C_3XBJhio_5vGXq6zTnF77vVj0OvaToQuMKPCgOxwUq0LKKulWhcKG_RGAMElEveUn9ZoltBJwfV1GF1xgurIlRiSfZ-YG-QIsvMFQJ1KtnR5KSA"/>
+</div>
+<div class="text-xs">
+<p class="font-bold">Verified Reach</p>
+<p class="text-on-surface-variant">Logistics ID: #8489-D</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer / Share Call to Action -->
+<footer class="bg-surface-container-low px-margin-desktop py-stack-lg border-t border-outline-variant">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="text-center md:text-left">
+<h4 class="font-headline-sm text-headline-sm text-primary mb-2">Help Expand the Link</h4>
+<p class="font-body-md text-on-surface-variant">Share this dashboard to encourage more partners to join our national recovery network.</p>
+</div>
+<div class="flex gap-stack-md">
+<button class="flex items-center gap-2 border border-outline-variant px-stack-md py-2 rounded-lg font-bold hover:bg-white transition-all">
+<span class="material-symbols-outlined">share</span> Copy Link
+                </button>
+<button class="flex items-center gap-2 bg-on-surface text-surface px-stack-md py-2 rounded-lg font-bold hover:opacity-90 transition-all">
+<span class="material-symbols-outlined">download</span> Export Report
+                </button>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-stack-lg flex justify-between items-center text-xs text-on-surface-variant border-t border-outline-variant pt-stack-md">
+<p>© 2024 FoodLink. Global Logistics for Civic Surplus.</p>
+<div class="flex gap-4">
+<a class="hover:underline" href="#">Privacy Protocol</a>
+<a class="hover:underline" href="#">Security Whitepaper</a>
+<a class="hover:underline" href="#">Audit Log</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple scroll interaction for the timeline
+        const timeline = document.getElementById('impactTimeline');
+        const btnLeft = document.getElementById('scrollLeft');
+        const btnRight = document.getElementById('scrollRight');
+
+        btnRight.onclick = () => {
+            timeline.scrollBy({ left: 350, behavior: 'smooth' });
+        };
+        btnLeft.onclick = () => {
+            timeline.scrollBy({ left: -350, behavior: 'smooth' });
+        };
+
+        // Micro-interaction: Update "Last Updated" text
+        setInterval(() => {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            // This would normally target a specific element if added
+        }, 1000);
+    </script>
+</body></html>

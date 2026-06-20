@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodLink | Connecting Surplus to Need</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Atkinson+Hyperlegible+Next:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#684000",
+                    "tertiary-fixed": "#ffdad6",
+                    "tertiary": "#a50710",
+                    "on-surface-variant": "#3e4947",
+                    "primary-fixed": "#9cf2e8",
+                    "on-surface": "#111c2d",
+                    "inverse-surface": "#263143",
+                    "error": "#ba1a1a",
+                    "secondary": "#855300",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb4ab",
+                    "outline-variant": "#bdc9c6",
+                    "on-primary-fixed-variant": "#00504a",
+                    "inverse-on-surface": "#ecf1ff",
+                    "primary-fixed-dim": "#80d5cb",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#00201d",
+                    "surface-container-highest": "#d8e3fb",
+                    "surface-bright": "#f9f9ff",
+                    "on-tertiary-fixed-variant": "#93000b",
+                    "outline": "#6e7977",
+                    "secondary-container": "#fea619",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#80d5cb",
+                    "tertiary-container": "#c92926",
+                    "on-tertiary-container": "#ffe4e0",
+                    "surface-variant": "#d8e3fb",
+                    "surface-tint": "#006a63",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "surface-dim": "#cfdaf2",
+                    "background": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "on-tertiary-fixed": "#410002",
+                    "surface-container": "#e7eeff",
+                    "primary": "#005c55",
+                    "surface-container-high": "#dee8ff",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#0f766e",
+                    "on-background": "#111c2d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#a3faef",
+                    "surface-container-low": "#f0f3ff",
+                    "secondary-fixed": "#ffddb8",
+                    "on-secondary-fixed": "#2a1700",
+                    "secondary-fixed-dim": "#ffb95f",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "status-indicator": ["Atkinson Hyperlegible Next"],
+                    "label-caps": ["Atkinson Hyperlegible Next"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "status-indicator": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .split-transition {
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+        }
+        .slide-confirm {
+            background: linear-gradient(90deg, #0f766e 0%, #005c55 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-md flex justify-between items-center px-margin-desktop h-16 border-b border-outline-variant">
+<div class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">food_bank</span>
+            FoodLink
+        </div>
+<nav class="hidden md:flex gap-stack-lg items-center">
+<a class="text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Our Mission</a>
+<a class="text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Logistics</a>
+<a class="text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Impact Reports</a>
+<button class="bg-primary text-on-primary px-stack-md py-2 font-label-caps rounded-lg transition-transform active:scale-95">Sign In</button>
+</nav>
+<button class="md:hidden p-2 text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="relative h-screen w-full flex overflow-hidden pt-16">
+<!-- Left: Donor Half -->
+<section class="relative flex-1 group cursor-pointer overflow-hidden border-r border-outline-variant/30">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A professional commercial kitchen environment with stainless steel counters and chef prepared trays of high-quality surplus food. The lighting is warm and industrious, emphasizing cleanliness and productivity. The color palette incorporates deep teal accents in the background architecture, maintaining a sophisticated humanitarian logistics aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkbb5RV2NU7LAHqE50CWqmDyyNrdHban1yeAUkmNh-jWVnC7tGEIE4Ncqdl7Y3p7ByVITUrBQ0Y5iAjI7KxCcSa6U7cEfvhWN8Jy3uAxT5l9AUQ2YyhkoMRsZkLwCmfxjJQxl5WTtkWwQCpe-LzVOZhZ4a8WDixPUqPaS1sxj-Q303Ga-qN0EN0TovgcBeazrk0fWCbR_-ml8uo-R3Rx9fA2N7RgeH6MrSbtQjrp4TD_Jk-C6adaqtWLA682UGWM42uYyeUOeoyxc')">
+</div>
+<div class="absolute inset-0 bg-primary/40 mix-blend-multiply transition-opacity group-hover:opacity-30"></div>
+<div class="absolute inset-0 hover-overlay"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-center px-margin-desktop text-white">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 font-status-indicator text-status-indicator rounded-sm mb-4 inline-block w-fit">FOR COMMERCIAL KITCHENS</span>
+<h1 class="font-headline-lg text-headline-lg mb-4 max-w-md">I have surplus food</h1>
+<p class="font-body-lg text-body-lg text-white/90 mb-stack-lg max-w-sm">Convert your kitchen's excess into emergency relief. Real-time listing and pickup coordination.</p>
+<div class="flex flex-col gap-4">
+<button class="h-14 bg-white text-primary font-bold px-8 rounded-xl flex items-center justify-between group/btn transition-all hover:bg-primary-fixed">
+<span>POST SURPLUS NOW</span>
+<span class="material-symbols-outlined transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+</button>
+<div class="flex items-center gap-2 text-white/70 font-label-caps">
+<span class="material-symbols-outlined text-sm">verified</span>
+                        Trusted by 400+ restaurants
+                    </div>
+</div>
+</div>
+</section>
+<!-- Central Animated Connector -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none">
+<div class="bg-surface rounded-full p-6 shadow-xl border border-outline-variant flex items-center justify-center">
+<!-- STITCH_SVG_START:ANIMATION_11 class="w-32 h-32 md:w-48 md:h-48" --><div class="w-32 h-32 md:w-48 md:h-48" id="animated-svg-ANIMATION_11" style="display:block;"><svg viewbox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="bridgeGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#0F766E">
+<animate attributename="stop-color" dur="4s" repeatcount="indefinite" values="#0F766E;#F59E0B;#0F766E"></animate>
+</stop>
+<stop offset="100%" stop-color="#F59E0B">
+<animate attributename="stop-color" dur="4s" repeatcount="indefinite" values="#F59E0B;#0F766E;#F59E0B"></animate>
+</stop>
+</lineargradient>
+</defs>
+<!-- Connecting Path -->
+<path d="M 50,100 C 150,100 250,100 350,100" fill="none" stroke="url(#bridgeGradient)" stroke-linecap="round" stroke-width="4">
+<animate attributename="stroke-dasharray" dur="3s" repeatcount="indefinite" values="0,1000;1000,0"></animate>
+</path>
+<!-- Pulses -->
+<circle fill="#0F766E" r="6">
+<animatemotion dur="3s" path="M 50,100 C 150,100 250,100 350,100" repeatcount="indefinite"></animatemotion>
+<animate attributename="opacity" dur="3s" repeatcount="indefinite" values="0;1;0"></animate>
+</circle>
+<circle fill="#F59E0B" r="4">
+<animatemotion begin="1.5s" dur="3s" path="M 50,100 C 150,100 250,100 350,100" repeatcount="indefinite"></animatemotion>
+<animate attributename="opacity" begin="1.5s" dur="3s" repeatcount="indefinite" values="0;1;0"></animate>
+</circle>
+<!-- Icons on ends -->
+<g transform="translate(30, 85)">
+<rect fill="#0F766E" height="30" rx="4" width="30"></rect>
+<path d="M15 8l-6 6h12z" fill="white" transform="translate(0, 2) scale(0.8)"></path>
+</g>
+<g transform="translate(340, 85)">
+<rect fill="#F59E0B" height="30" rx="4" width="30"></rect>
+<path d="M15 22l6-6H9z" fill="white" transform="translate(0, -2) scale(0.8)"></path>
+</g>
+</svg></div><!-- STITCH_SVG_END:ANIMATION_11 -->
+</div>
+</div>
+<!-- Right: Receiver Half -->
+<section class="relative flex-1 group cursor-pointer overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A clean, organized non-profit distribution center where volunteers are arranging food boxes for local families. The atmosphere is bright, hopeful, and urgent. Soft sunlight streams through high windows, illuminating the space with a natural glow. Touches of warm amber and slate grey define the functional, humanitarian styling of the facility." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBmt9lr4KYTHQ95r0EJtAjNInzzN3axWYXtOLFPA0XOpzlYwmJ455xxL6r8xHOozK6QMSEvTYxkFZLxC2KttuKX-ZQiwf9qqNp9ZE0f4-EFPJt4p5ak9KRNJ6u7fhuXw8mV589jrYaowQVryxXbauwTZeI0VHEFdSiVCHxeu5bm4aW737upM1zaOqRgMX6UutGRDJjP9BN0qr8RP8yBHhvbMt3ryWNIaWNrfeW_LarwajJRwCSz-piwiBLiYz0kyIrUuMyXFxRO3bs')">
+</div>
+<div class="absolute inset-0 bg-secondary/40 mix-blend-multiply transition-opacity group-hover:opacity-30"></div>
+<div class="absolute inset-0 hover-overlay"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-center px-margin-desktop text-white text-right items-end">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 font-status-indicator text-status-indicator rounded-sm mb-4 inline-block w-fit">FOR NON-PROFITS</span>
+<h1 class="font-headline-lg text-headline-lg mb-4 max-w-md">We need food</h1>
+<p class="font-body-lg text-body-lg text-white/90 mb-stack-lg max-w-sm">Access localized high-nutrition surplus. Secure reliable supply chains for your community pantry.</p>
+<div class="flex flex-col gap-4 items-end">
+<button class="h-14 bg-secondary-container text-on-secondary-container font-bold px-8 rounded-xl flex items-center justify-between gap-4 group/btn transition-all hover:bg-secondary-fixed">
+<span>REQUEST ACCESS</span>
+<span class="material-symbols-outlined transition-transform group-hover/btn:translate-x-1">volunteer_activism</span>
+</button>
+<div class="flex items-center gap-2 text-white/70 font-label-caps">
+                        Serving 50,000+ weekly households
+                        <span class="material-symbols-outlined text-sm">groups</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Bar Overlay -->
+<footer class="absolute bottom-0 left-0 w-full bg-surface/95 backdrop-blur-sm z-40 border-t border-outline-variant flex flex-col md:flex-row items-center py-stack-md px-margin-desktop gap-gutter">
+<div class="flex-1 flex justify-around w-full">
+<div class="text-center md:text-left">
+<div class="font-headline-sm text-headline-sm text-primary">1.2M+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">MEALS SAVED</div>
+</div>
+<div class="h-10 w-px bg-outline-variant hidden md:block"></div>
+<div class="text-center md:text-left">
+<div class="font-headline-sm text-headline-sm text-secondary">50+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">ACTIVE CITIES</div>
+</div>
+<div class="h-10 w-px bg-outline-variant hidden md:block"></div>
+<div class="text-center md:text-left">
+<div class="font-headline-sm text-headline-sm text-on-surface">98%</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">FULFILLMENT RATE</div>
+</div>
+</div>
+<div class="flex items-center gap-stack-lg opacity-40 grayscale hover:grayscale-0 transition-all">
+<!-- Mock Logos -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">health_and_safety</span>
+<span class="font-label-caps text-label-caps">WFP PARTNER</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">public</span>
+<span class="font-label-caps text-label-caps">RED CROSS</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-caps text-label-caps">CIVIC RELIEF</span>
+</div>
+</div>
+</footer>
+</main>
+<!-- Interactive Layer: Hover States for Split Layout -->
+<script>
+        document.querySelectorAll('section').forEach(section => {
+            section.addEventListener('mouseenter', () => {
+                section.style.flex = "1.5";
+                section.nextElementSibling?.style ? (section.nextElementSibling.style.flex = "0.5") : null;
+                section.previousElementSibling?.style ? (section.previousElementSibling.style.flex = "0.5") : null;
+            });
+            section.addEventListener('mouseleave', () => {
+                document.querySelectorAll('section').forEach(s => s.style.flex = "1");
+            });
+        });
+
+        // Simple smooth scroll / interaction logic for the demo
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(s => s.classList.add('split-transition'));
+        });
+    </script>
+</body></html>
