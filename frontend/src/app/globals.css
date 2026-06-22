@@ -4,13 +4,142 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: 249 249 255;
+    --foreground: 17 28 45;
+    --on-secondary-container: 104 64 0;
+    --tertiary-fixed: 255 218 214;
+    --tertiary: 165 7 16;
+    --on-surface-variant: 62 73 71;
+    --primary-fixed: 156 242 232;
+    --on-surface: 17 28 45;
+    --inverse-surface: 38 49 67;
+    --error: 186 26 26;
+    --secondary: 133 83 0;
+    --on-error: 255 255 255;
+    --tertiary-fixed-dim: 255 180 171;
+    --outline-variant: 189 201 198;
+    --on-primary-fixed-variant: 0 80 74;
+    --inverse-on-surface: 236 241 255;
+    --primary-fixed-dim: 128 213 203;
+    --on-tertiary: 255 255 255;
+    --on-primary-fixed: 0 32 29;
+    --surface-container-highest: 216 227 251;
+    --surface-bright: 249 249 255;
+    --on-tertiary-fixed-variant: 147 0 11;
+    --outline: 110 121 119;
+    --secondary-container: 254 166 25;
+    --on-error-container: 147 0 10;
+    --inverse-primary: 128 213 203;
+    --tertiary-container: 201 41 38;
+    --on-tertiary-container: 255 228 224;
+    --surface-variant: 216 227 251;
+    --surface-tint: 0 106 99;
+    --on-secondary-fixed-variant: 101 62 0;
+    --surface-dim: 207 218 242;
+    --on-secondary: 255 255 255;
+    --surface: 249 249 255;
+    --on-tertiary-fixed: 65 0 2;
+    --surface-container: 231 238 255;
+    --primary: 0 92 85;
+    --surface-container-high: 222 232 255;
+    --on-primary: 255 255 255;
+    --primary-container: 15 118 110;
+    --on-background: 17 28 45;
+    --surface-container-lowest: 255 255 255;
+    --on-primary-container: 163 250 239;
+    --surface-container-low: 240 243 255;
+    --secondary-fixed: 255 221 184;
+    --on-secondary-fixed: 42 23 0;
+    --secondary-fixed-dim: 255 185 95;
+    --error-container: 255 218 214;
   }
+  
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 26 28 30;
+    --foreground: 226 226 230;
+    --on-secondary-container: 172 204 255;
+    --tertiary-fixed: 51 81 84;
+    --tertiary: 123 249 242;
+    --on-surface-variant: 160 160 160;
+    --primary-fixed: 130 61 69;
+    --on-surface: 226 226 230;
+    --inverse-surface: 225 216 201;
+    --error: 255 180 171;
+    --secondary: 149 189 255;
+    --on-error: 51 51 51;
+    --tertiary-fixed-dim: 51 111 118;
+    --outline-variant: 70 70 70;
+    --on-primary-fixed-variant: 255 191 196;
+    --inverse-on-surface: 26 28 30;
+    --primary-fixed-dim: 153 85 93;
+    --on-tertiary: 51 51 51;
+    --on-primary-fixed: 255 229 232;
+    --surface-container-highest: 50 50 55;
+    --surface-bright: 60 60 65;
+    --on-tertiary-fixed-variant: 137 255 246;
+    --outline: 167 158 160;
+    --secondary-container: 52 122 235;
+    --on-error-container: 137 255 247;
+    --inverse-primary: 153 85 93;
+    --tertiary-container: 94 222 225;
+    --on-tertiary-container: 51 73 76;
+    --surface-variant: 40 40 45;
+    --surface-tint: 255 170 176;
+    --on-secondary-fixed-variant: 174 205 255;
+    --surface-dim: 20 20 22;
+    --on-secondary: 51 51 51;
+    --surface: 26 28 30;
+    --on-tertiary-fixed: 203 255 253;
+    --surface-container: 30 30 35;
+    --primary: 81 216 198;
+    --surface-container-high: 40 40 45;
+    --on-primary: 0 55 50;
+    --primary-container: 0 80 74;
+    --on-background: 226 226 230;
+    --surface-container-lowest: 15 15 18;
+    --on-primary-container: 126 246 228;
+    --surface-container-low: 20 20 25;
+    --secondary-fixed: 51 78 108;
+    --on-secondary-fixed: 221 237 255;
+    --secondary-fixed-dim: 51 107 179;
+    --error-container: 51 81 84;
   }
+
+  .shimmer-bg {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  .interactive-card {
+    @apply transition-all duration-200 ease-out hover:-translate-y-[2px] hover:shadow-md active:scale-[0.98];
+  }
+
+  .interactive-btn {
+    @apply transition-all duration-150 ease-out hover:brightness-95 active:scale-[0.98];
+  }
+
+  .interactive-row {
+    @apply transition-colors duration-150 ease-out hover:bg-slate-50 cursor-pointer;
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes map-pulse-critical {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes map-pulse-urgent {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes map-pulse-moderate {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(2); opacity: 0; }
 }
 
 body {
