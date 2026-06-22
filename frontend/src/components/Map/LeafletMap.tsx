@@ -7,23 +7,20 @@ import L from 'leaflet'
 import { useEffect, useState } from 'react'
 
 // Fix for default marker icons in Leaflet + Next.js
-const defaultIcon = L.icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
+const defaultIcon = L.divIcon({
+  html: '<div class="w-4 h-4 bg-primary rounded-full border-2 border-white shadow-md relative"><div class="absolute inset-0 bg-primary rounded-full animate-ping opacity-75 duration-1000"></div></div>',
+  className: '',
+  iconSize: [16, 16],
+  iconAnchor: [8, 8],
+  popupAnchor: [0, -8]
 });
 
-const emergencyIcon = L.icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
+const emergencyIcon = L.divIcon({
+  html: '<div class="w-4 h-4 bg-error rounded-full border-2 border-white shadow-md relative"><div class="absolute inset-0 bg-error rounded-full animate-ping opacity-75 duration-700"></div></div>',
+  className: '',
+  iconSize: [16, 16],
+  iconAnchor: [8, 8],
+  popupAnchor: [0, -8]
 });
 
 L.Marker.prototype.options.icon = defaultIcon;
@@ -34,7 +31,8 @@ interface LeafletMapProps {
   selectedLocation?: { lat: number, lng: number, title?: string, isEmergency?: boolean } | null
 }
 
-const defaultCenter = { lat: 40.7128, lng: -74.0060 }
+// Default to geographic center of India
+const defaultCenter = { lat: 20.5937, lng: 78.9629 }
 
 // Component to fly to a specifically selected location from the UI
 function LocationFlyer({ selectedLocation }: { selectedLocation?: { lat: number, lng: number, title?: string, isEmergency?: boolean } | null }) {
@@ -112,8 +110,14 @@ function LocationMarker() {
   }, [map]);
 
   const triggerLocate = () => {
-    map.locate({ setView: true, maxZoom: 14, enableHighAccuracy: false, timeout: 5000 });
+    map.locate({ setView: true, maxZoom: 14, enableHighAccuracy: true, timeout: 10000 });
   }
+
+  // Auto-trigger on mount
+  useEffect(() => {
+    triggerLocate();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="absolute bottom-6 right-6 z-[1000]">
@@ -123,7 +127,7 @@ function LocationMarker() {
           e.stopPropagation();
           triggerLocate();
         }}
-        className="bg-white text-primary p-3 rounded-full shadow-xl hover:bg-surface-container flex items-center justify-center border border-outline-variant"
+        className="bg-surface-container-lowest text-primary p-3 rounded-full shadow-xl hover:bg-surface-container flex items-center justify-center border border-outline-variant"
         title="Find My Location"
       >
         <span className="material-symbols-outlined text-[24px]">my_location</span>

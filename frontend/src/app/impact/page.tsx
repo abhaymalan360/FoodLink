@@ -3,6 +3,7 @@ import Link from 'next/link'
 import MobileMenu from '@/components/MobileMenu'
 import dynamic from 'next/dynamic'
 import EmergencyReportForm from '@/components/EmergencyReportForm'
+import AnimatedNumber from '@/components/ui/AnimatedNumber'
 
 const MapComponent = dynamic(() => import('@/components/Map/LeafletMap'), { ssr: false, loading: () => <div className="w-full h-full flex items-center justify-center font-bold text-primary">Loading Map...</div> })
 
@@ -51,46 +52,46 @@ export default async function ImpactPage() {
             <h2 className="font-headline-lg text-headline-lg text-on-surface">Measuring Real-Time <br/><span className="text-primary">Civic Emergency Response</span></h2>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-md">Our unified logistics engine coordinates surplus food recovery between commercial kitchens and community organizations at scale.</p>
             <div className="pt-stack-md">
-              <Link href="/auth" className="bg-primary text-on-primary px-stack-lg py-4 rounded-xl font-headline-sm text-headline-sm inline-flex items-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-95">
+              <Link href="/volunteer/dashboard" className="bg-primary text-on-primary px-stack-lg py-4 rounded-xl font-headline-sm text-headline-sm inline-flex items-center gap-2 hover:bg-primary-container hover:text-on-primary-container interactive-btn">
                 Join the Network <span className="material-symbols-outlined">arrow_forward</span>
               </Link>
             </div>
           </div>
           <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-stack-md z-10">
             {/* Stat Card 1 */}
-            <div className="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-48 transition-all hover:border-primary">
+            <div className="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-48 interactive-card">
               <div>
                 <span className="material-symbols-outlined text-primary text-3xl">restaurant</span>
                 <h3 className="font-label-caps text-label-caps text-on-surface-variant mt-2">Meals Saved</h3>
               </div>
               <div>
-                <div className="font-headline-lg text-headline-lg text-on-surface">{totalMeals.toLocaleString()}</div>
+                <div className="font-headline-lg text-headline-lg text-on-surface"><AnimatedNumber value={totalMeals} /></div>
                 <div className="text-primary font-status-indicator text-status-indicator flex items-center gap-1">
                   <span className="material-symbols-outlined text-sm">trending_up</span> Live metrics
                 </div>
               </div>
             </div>
             {/* Stat Card 2 */}
-            <div className="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-48 transition-all hover:border-primary">
+            <div className="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-48 interactive-card">
               <div>
                 <span className="material-symbols-outlined text-tertiary text-3xl">delete_sweep</span>
                 <h3 className="font-label-caps text-label-caps text-on-surface-variant mt-2">Waste Prevented</h3>
               </div>
               <div>
-                <div className="font-headline-lg text-headline-lg text-on-surface">{totalWaste.toLocaleString()} <span className="text-body-md font-normal text-on-surface-variant">kg</span></div>
+                <div className="font-headline-lg text-headline-lg text-on-surface"><AnimatedNumber value={totalWaste} /> <span className="text-body-md font-normal text-on-surface-variant">kg</span></div>
                 <div className="text-tertiary font-status-indicator text-status-indicator flex items-center gap-1">
                   <span className="material-symbols-outlined text-sm">monitoring</span> High Impact Area
                 </div>
               </div>
             </div>
             {/* Stat Card 3 */}
-            <div className="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-48 transition-all hover:border-primary">
+            <div className="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl flex flex-col justify-between h-48 interactive-card">
               <div>
                 <span className="material-symbols-outlined text-secondary text-3xl">groups</span>
                 <h3 className="font-label-caps text-label-caps text-on-surface-variant mt-2">Communities Served</h3>
               </div>
               <div>
-                <div className="font-headline-lg text-headline-lg text-on-surface">{totalCities}</div>
+                <div className="font-headline-lg text-headline-lg text-on-surface"><AnimatedNumber value={totalCities} /></div>
                 <div className="text-secondary font-status-indicator text-status-indicator flex items-center gap-1">
                   <span className="material-symbols-outlined text-sm">map</span> Nationwide Expansion
                 </div>
@@ -126,7 +127,7 @@ export default async function ImpactPage() {
               <h4 className="font-headline-sm text-headline-sm mb-stack-sm">Current Active Hubs</h4>
               <div className="space-y-stack-md">
                 {Array.from(citiesSet).slice(0, 4).map((city, idx) => (
-                  <div key={city} className="flex items-center justify-between p-3 bg-white rounded-lg border border-outline-variant">
+                  <div key={city} className="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg border border-outline-variant">
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <span className="font-body-md font-semibold">{city}</span>
@@ -152,7 +153,7 @@ export default async function ImpactPage() {
         
         <div className="flex gap-gutter px-margin-desktop overflow-x-auto py-4" style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}>
           {logs?.slice(0, 10).map((log) => (
-            <div key={log.id} className="min-w-[320px] bg-white border border-outline-variant p-stack-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div key={log.id} className="min-w-[320px] bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
               <div className="flex justify-between items-start mb-4">
                 <span className="px-2 py-1 bg-surface-container-high rounded font-label-caps text-primary">
                   {new Date(log.logged_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -187,7 +188,7 @@ export default async function ImpactPage() {
             <p className="font-body-md text-on-surface-variant">Share this dashboard to encourage more partners to join our national recovery network.</p>
           </div>
           <div className="flex gap-stack-md">
-            <button className="flex items-center gap-2 border border-outline-variant px-stack-md py-2 rounded-lg font-bold hover:bg-white transition-all">
+            <button className="flex items-center gap-2 border border-outline-variant px-stack-md py-2 rounded-lg font-bold hover:bg-surface-container-lowest transition-all">
               <span className="material-symbols-outlined">share</span> Copy Link
             </button>
           </div>

@@ -22,7 +22,8 @@ interface LocationPickerProps {
   onLocationSelect: (lat: number, lng: number) => void;
 }
 
-const defaultCenter = { lat: 40.7128, lng: -74.0060 }
+// Default to geographic center of India
+const defaultCenter = { lat: 20.5937, lng: 78.9629 }
 
 function MapController({ position, setPosition, onLocationSelect }: any) {
   useMapEvents({

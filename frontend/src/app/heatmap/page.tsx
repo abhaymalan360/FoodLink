@@ -88,7 +88,7 @@ export default function HeatmapPage() {
           </div>
 
           {/* Legend Overlay */}
-          <div className="absolute top-stack-lg left-stack-lg bg-white/90 backdrop-blur-md border border-outline-variant p-stack-md rounded-xl shadow-xl w-64 z-10">
+          <div className="absolute top-stack-lg left-stack-lg bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant p-stack-md rounded-xl shadow-xl w-64 z-10">
             <h3 className="font-label-caps text-label-caps text-on-surface-variant mb-stack-sm">COMMAND FILTERS</h3>
             <div className="flex flex-col gap-unit">
               <label className="flex items-center justify-between p-stack-sm hover:bg-surface-container cursor-pointer rounded-lg transition-colors">
@@ -111,12 +111,12 @@ export default function HeatmapPage() {
 
         {/* Right Sidebar */}
         <aside 
-          className={`bg-white border-l border-outline-variant flex flex-col h-full transition-all duration-300 relative z-20 ${isSidebarOpen ? 'w-[380px]' : 'w-[0px] border-l-0'}`}
+          className={`bg-surface-container-lowest border-l border-outline-variant flex flex-col h-full transition-all duration-300 relative z-20 ${isSidebarOpen ? 'w-[380px]' : 'w-[0px] border-l-0'}`}
         >
           {/* Collapse Toggle Button */}
           <button 
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className={`absolute top-1/2 -translate-y-1/2 w-8 h-12 bg-white border border-outline-variant rounded-l-xl shadow-md flex items-center justify-center hover:bg-surface-variant transition-colors z-50 ${isSidebarOpen ? '-left-4' : '-left-8'}`}
+            className={`absolute top-1/2 -translate-y-1/2 w-8 h-12 bg-surface-container-lowest border border-outline-variant rounded-l-xl shadow-md flex items-center justify-center hover:bg-surface-variant transition-colors z-50 ${isSidebarOpen ? '-left-4' : '-left-8'}`}
           >
             <span className="material-symbols-outlined text-[20px]">{isSidebarOpen ? 'chevron_right' : 'chevron_left'}</span>
           </button>
@@ -131,7 +131,7 @@ export default function HeatmapPage() {
               <div className="grid grid-cols-2 gap-stack-md mb-stack-lg shrink-0">
                 <div 
                   onClick={() => setActiveFilter(activeFilter === 'needs' ? 'all' : 'needs')}
-                  className={`p-stack-md rounded-xl border shadow-sm cursor-pointer transition-all ${activeFilter === 'needs' ? 'bg-error/10 border-error' : 'bg-white border-outline-variant hover:border-error/50'}`}
+                  className={`p-stack-md rounded-xl border shadow-sm cursor-pointer transition-all ${activeFilter === 'needs' ? 'bg-error/10 border-error' : 'bg-surface-container-lowest border-outline-variant hover:border-error/50'}`}
                 >
                   <h3 className="font-label-caps text-label-caps text-on-surface-variant mb-1">ACTIVE NEEDS</h3>
                   <div className="font-headline-lg text-headline-lg text-error">
@@ -140,7 +140,7 @@ export default function HeatmapPage() {
                 </div>
                 <div 
                   onClick={() => setActiveFilter(activeFilter === 'surplus' ? 'all' : 'surplus')}
-                  className={`p-stack-md rounded-xl border shadow-sm cursor-pointer transition-all ${activeFilter === 'surplus' ? 'bg-primary/10 border-primary' : 'bg-white border-outline-variant hover:border-primary/50'}`}
+                  className={`p-stack-md rounded-xl border shadow-sm cursor-pointer transition-all ${activeFilter === 'surplus' ? 'bg-primary/10 border-primary' : 'bg-surface-container-lowest border-outline-variant hover:border-primary/50'}`}
                 >
                   <h3 className="font-label-caps text-label-caps text-on-surface-variant mb-1">AVAILABLE SURPLUS</h3>
                   <div className="font-headline-lg text-headline-lg text-primary">
@@ -160,7 +160,7 @@ export default function HeatmapPage() {
               {/* Feed Items */}
               <div className="flex flex-col gap-stack-sm relative">
                 {isLocating && (
-                  <div className="absolute top-0 left-0 w-full h-full bg-white/70 z-10 flex items-center justify-center backdrop-blur-sm rounded-lg">
+                  <div className="absolute top-0 left-0 w-full h-full bg-surface-container-lowest/70 z-10 flex items-center justify-center backdrop-blur-sm rounded-lg">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
                     <span className="ml-2 font-bold text-primary">Locating {isLocating}...</span>
                   </div>
@@ -170,7 +170,7 @@ export default function HeatmapPage() {
                   <div 
                     key={d.id} 
                     onClick={async () => {
-                      if (d.lat && d.lng && (Math.abs(d.lat - 40.7128) > 0.01 || Math.abs(d.lng - -74.0060) > 0.01)) {
+                      if (d.lat && d.lng && (Math.abs(d.lat - 20.5937) > 0.01 || Math.abs(d.lng - 78.9629) > 0.01)) {
                         setSelectedLocation({ lat: d.lat, lng: d.lng })
                       } else if (d.area) {
                         setIsLocating("Demand")
@@ -183,7 +183,7 @@ export default function HeatmapPage() {
                         setIsLocating(null)
                       }
                     }}
-                    className="group border-l-4 border-tertiary bg-white border border-outline-variant p-stack-md rounded-r-xl hover:shadow-md transition-all cursor-pointer"
+                    className="group border-l-4 border-tertiary bg-surface-container-lowest border border-outline-variant p-stack-md rounded-r-xl hover:shadow-md transition-all cursor-pointer"
                   >
                     <div className="flex justify-between items-start mb-unit">
                       <span className="font-label-caps text-tertiary bg-tertiary-fixed px-2 py-0.5 rounded">DEMAND</span>
@@ -204,7 +204,7 @@ export default function HeatmapPage() {
                   <div 
                     key={l.id} 
                     onClick={async () => {
-                      if (l.lat && l.lng && (Math.abs(l.lat - 40.7128) > 0.01 || Math.abs(l.lng - -74.0060) > 0.01)) {
+                      if (l.lat && l.lng && (Math.abs(l.lat - 20.5937) > 0.01 || Math.abs(l.lng - 78.9629) > 0.01)) {
                         setSelectedLocation({ lat: l.lat, lng: l.lng, title: l.food_name, isEmergency })
                       } else if (l.pickup_address) {
                         setIsLocating("Surplus")
@@ -217,7 +217,7 @@ export default function HeatmapPage() {
                         setIsLocating(null)
                       }
                     }}
-                    className={`group border-l-4 ${isEmergency ? 'border-error' : 'border-primary'} bg-white border border-outline-variant p-stack-md rounded-r-xl hover:shadow-md transition-all cursor-pointer`}
+                    className={`group border-l-4 ${isEmergency ? 'border-error' : 'border-primary'} bg-surface-container-lowest border border-outline-variant p-stack-md rounded-r-xl hover:shadow-md transition-all cursor-pointer`}
                   >
                     <div className="flex justify-between items-start mb-unit">
                       <span className={`font-label-caps ${isEmergency ? 'text-error bg-error/10' : 'text-primary bg-primary-container/30'} px-2 py-0.5 rounded`}>{isEmergency ? 'EMERGENCY' : 'SURPLUS'}</span>
@@ -236,10 +236,10 @@ export default function HeatmapPage() {
             
             {/* Footer Action */}
             <div className="p-stack-md border-t border-outline-variant bg-surface-container shrink-0">
-              <Link href="/auth" className="w-full bg-primary text-on-primary h-14 rounded-xl font-headline-sm flex items-center justify-center gap-stack-md hover:brightness-110 active:scale-[0.98] transition-all shadow-lg">
-                <span className="material-symbols-outlined">add_box</span>
+              <a href="/volunteer/dashboard" className="w-full mt-4 bg-primary text-on-primary py-3 rounded-lg font-headline-sm flex justify-center items-center gap-2 hover:brightness-110 transition-all">
+                <span className="material-symbols-outlined">volunteer_activism</span>
                 JOIN NETWORK
-              </Link>
+              </a>
             </div>
           </div>
         </aside>
