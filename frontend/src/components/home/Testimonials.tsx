@@ -57,7 +57,7 @@ export default function Testimonials() {
   const t = TESTIMONIALS[active]
 
   return (
-    <section className="py-28 bg-white relative overflow-hidden">
+    <section className="py-28 bg-surface-container-lowest relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
@@ -70,11 +70,11 @@ export default function Testimonials() {
         >
           <div>
             <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-teal-600 mb-4 block">Social Proof</span>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-black text-on-surface leading-tight tracking-tight">
               Trusted by the people<br />doing the work.
             </h2>
           </div>
-          <p className="text-slate-500 text-lg font-medium max-w-sm leading-relaxed lg:text-right">
+          <p className="text-on-surface-variant text-lg font-medium max-w-sm leading-relaxed lg:text-right">
             From premium restaurant kitchens to grassroots NGOs — real stories from across India.
           </p>
         </motion.div>
@@ -124,7 +124,7 @@ export default function Testimonials() {
                 </div>
                 <div>
                   <p className="text-white font-bold text-base">{t.name}</p>
-                  <p className="text-slate-400 text-sm">{t.title} · {t.org}</p>
+                  <p className="text-on-surface-variant text-sm">{t.title} · {t.org}</p>
                 </div>
                 <div className="ml-auto text-right hidden md:block">
                   <p className="text-teal-400 text-sm font-bold">{t.meals}</p>
@@ -142,21 +142,21 @@ export default function Testimonials() {
                 className={`text-left w-full px-5 py-4 rounded-2xl border transition-all duration-250 ${
                   i === active
                     ? 'bg-slate-950 border-slate-800 shadow-xl'
-                    : 'bg-slate-50 border-slate-100 hover:border-slate-200 hover:bg-white'
+                    : 'bg-surface-container-low border-outline-variant hover:border-outline-variant hover:bg-surface-container-lowest'
                 }`}
               >
                 <div className="flex items-center gap-3 mb-1">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-black ${
-                    i === active ? 'bg-teal-600 text-white' : 'bg-slate-200 text-slate-600'
+                    i === active ? 'bg-teal-600 text-white' : 'bg-surface-container-high text-on-surface-variant'
                   }`}>
                     {item.avatar}
                   </div>
                   <div>
-                    <p className={`font-bold text-sm ${i === active ? 'text-white' : 'text-slate-800'}`}>{item.name}</p>
-                    <p className={`text-xs font-medium ${i === active ? 'text-slate-400' : 'text-slate-500'}`}>{item.org}</p>
+                    <p className={`font-bold text-sm ${i === active ? 'text-white' : 'text-on-surface'}`}>{item.name}</p>
+                    <p className={`text-xs font-medium ${i === active ? 'text-on-surface-variant' : 'text-on-surface-variant'}`}>{item.org}</p>
                   </div>
                 </div>
-                <p className={`text-xs leading-relaxed line-clamp-2 mt-2 ${i === active ? 'text-slate-400' : 'text-slate-500'}`}>
+                <p className={`text-xs leading-relaxed line-clamp-2 mt-2 ${i === active ? 'text-on-surface-variant' : 'text-on-surface-variant'}`}>
                   "{item.quote}"
                 </p>
               </button>

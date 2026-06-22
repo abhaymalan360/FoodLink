@@ -228,7 +228,7 @@ function OrgLogo({ entry, isNGO }: { entry: Entry; isNGO: boolean }) {
   }
 
   return (
-    <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center overflow-hidden p-1.5 shadow-sm">
+    <div className="w-14 h-14 rounded-2xl bg-surface-container-lowest border border-outline-variant flex items-center justify-center overflow-hidden p-1.5 shadow-sm">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={entry.logoUrl}
@@ -246,7 +246,7 @@ function Card({ item, isNGO }: { item: Entry; isNGO: boolean }) {
 
   return (
     <div
-      className="snap-start shrink-0 w-[300px] bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-default overflow-hidden"
+      className="snap-start shrink-0 w-[300px] bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-default overflow-hidden"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -265,16 +265,16 @@ function Card({ item, isNGO }: { item: Entry; isNGO: boolean }) {
         </div>
 
         {/* Name + address */}
-        <h3 className="text-lg font-bold text-slate-900 mb-1 leading-tight">{item.name}</h3>
-        <p className="text-xs text-slate-400 font-medium mb-0.5 flex items-center gap-1">
+        <h3 className="text-lg font-bold text-on-surface mb-1 leading-tight">{item.name}</h3>
+        <p className="text-xs text-on-surface-variant font-medium mb-0.5 flex items-center gap-1">
           <span className="material-symbols-outlined text-[13px]">location_on</span>
           {item.city}, {item.state}
         </p>
-        <p className="text-[11px] text-slate-400 leading-snug mb-5 line-clamp-1">{item.address}</p>
+        <p className="text-[11px] text-on-surface-variant leading-snug mb-5 line-clamp-1">{item.address}</p>
 
         {/* Stat */}
-        <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-          <p className="text-xs font-semibold text-slate-600 flex items-center gap-1.5">
+        <div className="pt-4 border-t border-outline-variant flex items-center justify-between">
+          <p className="text-xs font-semibold text-on-surface-variant flex items-center gap-1.5">
             <span className="material-symbols-outlined text-[15px] text-teal-600">trending_up</span>
             {item.stat}
           </p>
@@ -301,7 +301,7 @@ function Card({ item, isNGO }: { item: Entry; isNGO: boolean }) {
                 href={item.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-500 hover:text-slate-700 text-xs font-bold transition-all duration-200"
+                className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container border border-outline-variant text-on-surface-variant hover:text-on-surface text-xs font-bold transition-all duration-200"
               >
                 <span className="material-symbols-outlined text-[15px]">open_in_new</span>
               </a>
@@ -319,21 +319,21 @@ export default function FeaturedGrid() {
   const data = activeTab === 'ngos' ? NGOS : RESTAURANTS
 
   return (
-    <section className="py-24 bg-slate-50">
+    <section className="py-24 bg-surface-container-low">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header & Tabs */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
             <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-teal-600 mb-3 block">Real Partners</span>
-            <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-1">Community Champions</h2>
-            <p className="text-slate-500 font-medium text-base">
+            <h2 className="text-4xl font-black text-on-surface tracking-tight mb-1">Community Champions</h2>
+            <p className="text-on-surface-variant font-medium text-base">
               Verified Indian NGOs & restaurants making a real difference.
               <span className="ml-2 text-teal-600 font-semibold">Hover any card to find them on the map.</span>
             </p>
           </div>
 
-          <div className="flex bg-white border border-slate-200 p-1 rounded-xl w-fit shadow-sm">
+          <div className="flex bg-surface-container-lowest border border-outline-variant p-1 rounded-xl w-fit shadow-sm">
             {(['ngos', 'restaurants'] as const).map(tab => (
               <button
                 key={tab}
@@ -341,7 +341,7 @@ export default function FeaturedGrid() {
                 className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 ${
                   activeTab === tab
                     ? 'bg-slate-900 text-white shadow-sm'
-                    : 'text-slate-500 hover:text-slate-700'
+                    : 'text-on-surface-variant hover:text-on-surface'
                 }`}
               >
                 {tab === 'ngos' ? 'Active NGOs' : 'Restaurants Donating'}
@@ -367,7 +367,7 @@ export default function FeaturedGrid() {
         </AnimatePresence>
 
         {/* Maps hint */}
-        <p className="text-center text-slate-400 text-xs font-medium mt-4 flex items-center justify-center gap-1.5">
+        <p className="text-center text-on-surface-variant text-xs font-medium mt-4 flex items-center justify-center gap-1.5">
           <span className="material-symbols-outlined text-[14px]">info</span>
           Coordinates sourced from Google Maps · Click "View on Maps" to open exact location
         </p>

@@ -63,12 +63,12 @@ export default function HomeNav({ scrolled = false }: { scrolled?: boolean }) {
     return (
       <div className="flex items-center gap-3">
         <Link href={dashLink}
-          className={`px-4 py-2 text-sm font-semibold transition-colors flex items-center gap-2 ${scrolled ? 'text-slate-700 hover:text-slate-900' : 'text-white/90 hover:text-white'}`}>
+          className={`px-4 py-2 text-sm font-semibold transition-colors flex items-center gap-2 ${scrolled ? 'text-on-surface hover:text-on-surface' : 'text-white/90 hover:text-white'}`}>
           <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold border ${scrolled ? 'bg-teal-50 text-teal-700 border-teal-200' : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'}`}>{initials}</span>
           My Dashboard
         </Link>
         <button onClick={handleLogout}
-          className={`px-3 py-2 text-sm font-medium transition-colors ${scrolled ? 'text-slate-500 hover:text-slate-700' : 'text-white/70 hover:text-white'}`}>
+          className={`px-3 py-2 text-sm font-medium transition-colors ${scrolled ? 'text-on-surface-variant hover:text-on-surface' : 'text-white/70 hover:text-white'}`}>
           Log Out
         </button>
       </div>
@@ -77,10 +77,10 @@ export default function HomeNav({ scrolled = false }: { scrolled?: boolean }) {
 
   return (
     <div className="flex gap-4 items-center">
-      <Link href="/auth" className={`px-4 py-2 text-sm font-semibold transition-colors ${scrolled ? 'text-slate-700 hover:text-slate-900' : 'text-white hover:text-white/80'}`}>
+      <Link href="/auth" className={`px-4 py-2 text-sm font-semibold transition-colors ${scrolled ? 'text-on-surface hover:text-on-surface' : 'text-white hover:text-white/80'}`}>
         Log In
       </Link>
-      <Link href="/auth" className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg active:scale-95 ${scrolled ? 'bg-teal-600 text-white hover:bg-teal-700' : 'bg-white text-slate-900 hover:bg-slate-100'}`}>
+      <Link href="/auth" className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg active:scale-95 ${scrolled ? 'bg-teal-600 text-white hover:bg-teal-700' : 'bg-surface-container-lowest text-on-surface hover:bg-surface-container'}`}>
         Get Started
       </Link>
     </div>

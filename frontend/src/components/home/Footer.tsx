@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
+    <footer className="bg-slate-900 text-on-surface-variant py-16 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
@@ -32,7 +32,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">For NGOs</h4>
             <ul className="space-y-3">
-              <li><Link href="/ngo/onboarding" className="hover:text-white transition-colors">Join Network</Link></li>
+              <li><Link href="/volunteer/dashboard" className="hover:text-white transition-colors">Join Network</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">View Heatmap</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Logistics Support</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Success Stories</Link></li>
@@ -65,13 +65,13 @@ export default function Footer() {
           </p>
 
           <div className="flex items-center gap-4">
-            <Link href="#" className="text-slate-400 hover:text-white transition-colors">
+            <Link href="#" className="text-on-surface-variant hover:text-white transition-colors">
               <span className="material-symbols-outlined text-[20px]">language</span>
             </Link>
-            <Link href="#" className="text-slate-400 hover:text-white transition-colors">
+            <Link href="#" className="text-on-surface-variant hover:text-white transition-colors">
               <span className="material-symbols-outlined text-[20px]">mail</span>
             </Link>
-            <Link href="#" className="text-slate-400 hover:text-white transition-colors">
+            <Link href="#" className="text-on-surface-variant hover:text-white transition-colors">
               <span className="material-symbols-outlined text-[20px]">share</span>
             </Link>
           </div>

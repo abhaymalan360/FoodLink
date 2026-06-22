@@ -24,7 +24,7 @@ export default function HomeNavbar() {
   return (
     <nav 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-sm' : 'bg-transparent'
+        scrolled ? 'bg-surface-container-lowest shadow-sm' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -33,7 +33,7 @@ export default function HomeNavbar() {
             <span className="material-symbols-outlined text-white text-[20px]">restaurant</span>
           </div>
           <span className={`text-2xl font-extrabold tracking-tight transition-colors ${
-            scrolled ? 'text-slate-800' : 'text-white'
+            scrolled ? 'text-on-surface' : 'text-white'
           }`}>
             FoodLink
           </span>

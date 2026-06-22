@@ -79,7 +79,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-white/8 backdrop-blur-md mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-surface-container-lowest/8 backdrop-blur-md mb-8"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -116,7 +116,7 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row items-start gap-4 mb-16"
           >
             <Link
-              href="/restaurant/onboarding"
+              href="/auth?role=restaurant"
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-base tracking-tight transition-all duration-200 hover:-translate-y-0.5 shadow-[0_8px_30px_rgba(13,148,136,0.45)] active:scale-95"
             >
               <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>storefront</span>
@@ -124,8 +124,8 @@ export default function HeroSection() {
               <span className="material-symbols-outlined text-[18px] opacity-70 group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
             </Link>
             <Link
-              href="/ngo/onboarding"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white/10 hover:bg-white/18 backdrop-blur-md border border-white/20 text-white font-bold text-base tracking-tight transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
+              href="/auth?role=ngo"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-surface-container-lowest/10 hover:bg-surface-container-lowest/18 backdrop-blur-md border border-white/20 text-white font-bold text-base tracking-tight transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
             >
               <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>volunteer_activism</span>
               We Need Food
@@ -141,9 +141,9 @@ export default function HeroSection() {
             className="flex flex-wrap items-center gap-x-8 gap-y-3"
           >
             <AnimatedStat end={1240} label="meals saved today" showDot />
-            <div className="w-px h-4 bg-white/20 hidden sm:block" />
+            <div className="w-px h-4 bg-surface-container-lowest/20 hidden sm:block" />
             <AnimatedStat end={12} label="cities active" icon="location_city" />
-            <div className="w-px h-4 bg-white/20 hidden sm:block" />
+            <div className="w-px h-4 bg-surface-container-lowest/20 hidden sm:block" />
             <AnimatedStat end={340} label="restaurants onboarded" icon="storefront" />
           </motion.div>
         </div>
@@ -159,7 +159,7 @@ export default function HeroSection() {
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
           className="w-6 h-10 rounded-full border-2 border-white/25 flex items-start justify-center pt-2"
         >
-          <div className="w-1 h-2 rounded-full bg-white/60" />
+          <div className="w-1 h-2 rounded-full bg-surface-container-lowest/60" />
         </motion.div>
       </motion.div>
     </div>

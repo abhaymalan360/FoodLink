@@ -8,7 +8,7 @@ export default function CitySelector() {
   const [selectedCity, setSelectedCity] = useState<string>('Delhi')
 
   return (
-    <div className="sticky top-20 z-40 w-full bg-white border-b border-neutral-200 shadow-sm">
+    <div className="sticky top-20 z-40 w-full bg-surface-container-lowest border-b border-neutral-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center overflow-x-auto [&::-webkit-scrollbar]:hidden">
         <span className="text-neutral-500 font-medium text-sm whitespace-nowrap mr-6 flex items-center gap-1.5">
           <span className="material-symbols-outlined text-[18px]">location_on</span>

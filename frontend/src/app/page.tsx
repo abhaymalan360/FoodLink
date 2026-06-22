@@ -13,7 +13,7 @@ import Footer from '@/components/home/Footer'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-50 font-sans">
+    <main className="min-h-screen bg-surface-container-low font-sans">
       <HomeNavbar />
 
       <HeroSection />

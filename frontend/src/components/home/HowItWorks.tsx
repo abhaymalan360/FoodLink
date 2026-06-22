@@ -15,26 +15,26 @@ const RestaurantMockup = () => {
 
   return (
     <div className="w-full max-w-xs mx-auto">
-      <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xl shadow-slate-100">
+      <div className="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant shadow-xl shadow-none">
         <div className="flex items-center gap-2 mb-4">
           <div className="w-3 h-3 rounded-full bg-rose-400" />
           <div className="w-3 h-3 rounded-full bg-amber-400" />
           <div className="w-3 h-3 rounded-full bg-emerald-400" />
-          <span className="text-slate-400 text-xs ml-2 font-mono">List Surplus</span>
+          <span className="text-on-surface-variant text-xs ml-2 font-mono">List Surplus</span>
         </div>
 
         <div className="space-y-3">
           <div>
-            <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-1">Food Type</p>
-            <div className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 flex items-center justify-between">
-              <span className="text-slate-800 text-sm font-medium">Dal Makhani, Naan (40 pax)</span>
+            <p className="text-[10px] text-on-surface-variant font-semibold uppercase tracking-wider mb-1">Food Type</p>
+            <div className="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 flex items-center justify-between">
+              <span className="text-on-surface text-sm font-medium">Dal Makhani, Naan (40 pax)</span>
               <span className="material-symbols-outlined text-teal-500 text-[16px]">check_circle</span>
             </div>
           </div>
           <div>
-            <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-1">Pickup By</p>
-            <div className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2">
-              <span className="text-slate-800 text-sm font-medium">10:30 PM tonight</span>
+            <p className="text-[10px] text-on-surface-variant font-semibold uppercase tracking-wider mb-1">Pickup By</p>
+            <div className="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2">
+              <span className="text-on-surface text-sm font-medium">10:30 PM tonight</span>
             </div>
           </div>
 
@@ -101,12 +101,12 @@ const MatchingAnimation = () => {
           >
             <span className="material-symbols-outlined text-amber-500 text-[26px]" style={{ fontVariationSettings: "'FILL' 1" }}>storefront</span>
           </motion.div>
-          <span className="text-slate-500 text-[10px] font-bold uppercase tracking-wider">Restaurant</span>
+          <span className="text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">Restaurant</span>
         </div>
 
         {/* Animated connection line */}
         <div className="flex-1 mx-3 relative h-1 flex items-center">
-          <div className="w-full h-px bg-slate-200 absolute" />
+          <div className="w-full h-px bg-surface-container-high absolute" />
           <motion.div
             className="h-px bg-gradient-to-r from-teal-500 to-emerald-400 absolute"
             animate={{ width: active ? '100%' : '0%' }}
@@ -128,7 +128,7 @@ const MatchingAnimation = () => {
           >
             <span className="material-symbols-outlined text-teal-600 text-[26px]" style={{ fontVariationSettings: "'FILL' 1" }}>volunteer_activism</span>
           </motion.div>
-          <span className="text-slate-500 text-[10px] font-bold uppercase tracking-wider">NGO</span>
+          <span className="text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">NGO</span>
         </div>
       </div>
 
@@ -145,9 +145,9 @@ const MatchingAnimation = () => {
       {/* Stats row */}
       <div className="grid grid-cols-3 gap-3 w-full max-w-xs">
         {[['340+', 'NGOs'], ['12', 'Cities'], ['<1s', 'Latency']].map(([val, lbl]) => (
-          <div key={lbl} className="bg-white border border-slate-200 rounded-xl p-2 text-center shadow-sm">
-            <p className="text-slate-900 font-black text-base">{val}</p>
-            <p className="text-slate-400 text-[10px] font-semibold uppercase tracking-wider">{lbl}</p>
+          <div key={lbl} className="bg-surface-container-lowest border border-outline-variant rounded-xl p-2 text-center shadow-sm">
+            <p className="text-on-surface font-black text-base">{val}</p>
+            <p className="text-on-surface-variant text-[10px] font-semibold uppercase tracking-wider">{lbl}</p>
           </div>
         ))}
       </div>
@@ -165,9 +165,9 @@ const DeliveryTracker = () => {
   ]
   return (
     <div className="w-full max-w-xs mx-auto space-y-4">
-      <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xl shadow-slate-100">
+      <div className="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant shadow-xl shadow-none">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">Live Delivery</span>
+          <span className="text-on-surface-variant text-xs font-bold uppercase tracking-wider">Live Delivery</span>
           <span className="text-[10px] font-bold text-amber-600 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full flex items-center gap-1">
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"/>
@@ -178,7 +178,7 @@ const DeliveryTracker = () => {
         </div>
 
         <div className="relative flex items-center justify-between mb-6">
-          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-slate-200" />
+          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-surface-container-high" />
           <motion.div
             className="absolute left-0 top-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-teal-500 to-teal-400"
             initial={{ width: '0%' }}
@@ -194,23 +194,23 @@ const DeliveryTracker = () => {
                 className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${
                   s.active ? 'bg-teal-600 border-teal-500 shadow-[0_0_12px_rgba(13,148,136,0.35)]' :
                   s.done   ? 'bg-teal-500 border-teal-400' :
-                             'bg-white border-slate-300'
+                             'bg-surface-container-lowest border-outline'
                 }`}
               >
-                <span className={`material-symbols-outlined text-[14px] ${s.done || s.active ? 'text-white' : 'text-slate-400'}`} style={{ fontVariationSettings: "'FILL' 1" }}>{s.icon}</span>
+                <span className={`material-symbols-outlined text-[14px] ${s.done || s.active ? 'text-white' : 'text-on-surface-variant'}`} style={{ fontVariationSettings: "'FILL' 1" }}>{s.icon}</span>
               </motion.div>
-              <span className={`text-[9px] font-bold uppercase tracking-wide whitespace-nowrap ${s.active ? 'text-teal-600' : s.done ? 'text-slate-500' : 'text-slate-300'}`}>{s.label}</span>
+              <span className={`text-[9px] font-bold uppercase tracking-wide whitespace-nowrap ${s.active ? 'text-teal-600' : s.done ? 'text-on-surface-variant' : 'text-outline-variant'}`}>{s.label}</span>
             </div>
           ))}
         </div>
 
-        <div className="bg-slate-50 border border-slate-100 rounded-xl p-3 flex items-center gap-3">
+        <div className="bg-surface-container-low border border-outline-variant rounded-xl p-3 flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center shrink-0">
             <span className="material-symbols-outlined text-teal-600 text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>person</span>
           </div>
           <div>
-            <p className="text-slate-800 text-xs font-bold">Arjun Mehta · Volunteer</p>
-            <p className="text-slate-400 text-[10px]">2.1 km away · ETA 8 mins</p>
+            <p className="text-on-surface text-xs font-bold">Arjun Mehta · Volunteer</p>
+            <p className="text-on-surface-variant text-[10px]">2.1 km away · ETA 8 mins</p>
           </div>
           <span className="ml-auto material-symbols-outlined text-teal-600 text-[18px]">call</span>
         </div>
@@ -220,14 +220,14 @@ const DeliveryTracker = () => {
         initial={{ opacity: 0, y: 5 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5 }}
-        className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3"
+        className="bg-surface-container-lowest rounded-2xl p-4 border border-outline-variant shadow-sm flex items-center gap-3"
       >
         <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0">
           <span className="material-symbols-outlined text-emerald-600 text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>groups</span>
         </div>
         <div>
-          <p className="text-slate-400 text-[10px] font-semibold">Hope Foundation, Delhi</p>
-          <p className="text-slate-800 text-sm font-bold">40 meals · feeding tonight</p>
+          <p className="text-on-surface-variant text-[10px] font-semibold">Hope Foundation, Delhi</p>
+          <p className="text-on-surface text-sm font-bold">40 meals · feeding tonight</p>
         </div>
       </motion.div>
     </div>
@@ -280,7 +280,7 @@ const StepRow = ({ step, index }: { step: typeof steps[0]; index: number }) => {
       initial={{ opacity: 0, y: 60 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20 py-16 border-b border-slate-100 last:border-0`}
+      className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20 py-16 border-b border-outline-variant last:border-0`}
     >
       {/* Content */}
       <div className="flex-1 lg:max-w-[480px]">
@@ -290,10 +290,10 @@ const StepRow = ({ step, index }: { step: typeof steps[0]; index: number }) => {
           <span className={`text-sm font-bold uppercase tracking-widest ${step.overlineColor}`}>{step.overline}</span>
         </div>
 
-        <h3 className="text-3xl md:text-4xl font-black text-slate-900 leading-[1.1] mb-5 whitespace-pre-line">
+        <h3 className="text-3xl md:text-4xl font-black text-on-surface leading-[1.1] mb-5 whitespace-pre-line">
           {step.title}
         </h3>
-        <p className="text-slate-500 text-lg font-medium leading-relaxed">
+        <p className="text-on-surface-variant text-lg font-medium leading-relaxed">
           {step.body}
         </p>
       </div>
@@ -312,7 +312,7 @@ export default function HowItWorks() {
   const isHeaderInView = useInView(headerRef, { once: true, margin: '-80px' })
 
   return (
-    <section className="bg-white py-24 relative overflow-hidden">
+    <section className="bg-surface-container-lowest py-24 relative overflow-hidden">
       {/* Very subtle ambient tints */}
       <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-teal-50 rounded-full blur-3xl opacity-60 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[350px] bg-amber-50 rounded-full blur-3xl opacity-60 pointer-events-none" />
@@ -330,13 +330,13 @@ export default function HowItWorks() {
             How it works
           </span>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-[1.05] tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-black text-on-surface leading-[1.05] tracking-tight">
               From kitchen to<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">
                 community table.
               </span>
             </h2>
-            <p className="text-slate-500 font-medium text-lg max-w-xs leading-relaxed lg:text-right">
+            <p className="text-on-surface-variant font-medium text-lg max-w-xs leading-relaxed lg:text-right">
               Three steps. Zero phone calls.<br />Every meal tracked and verified.
             </p>
           </div>
