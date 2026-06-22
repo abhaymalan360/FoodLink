@@ -2,10 +2,20 @@
 
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { useToastStore } from '@/store/toastStore'
+import { useCountUp } from '@/hooks/useCountUp'
+import Skeleton from '@/components/ui/Skeleton'
+import EmptyState from '@/components/ui/EmptyState'
+import StatusDot from '@/components/ui/StatusDot'
+import DataRefreshBar from '@/components/ui/DataRefreshBar'
+import PageTransition from '@/components/ui/PageTransition'
+import { Navigation, FileSearch, Search } from 'lucide-react'
 
 export default function DashboardClient({ initialDemands, initialMatches, userId }: any) {
   const [demands, setDemands] = useState(initialDemands || [])
   const [matches, setMatches] = useState(initialMatches || [])
+  const [isFetching, setIsFetching] = useState(false)
+  const addToast = useToastStore((state) => state.addToast)
   const supabase = createClient()
 
   useEffect(() => {
@@ -38,15 +48,29 @@ export default function DashboardClient({ initialDemands, initialMatches, userId
   }, [userId, supabase])
 
   const confirmPickup = async (matchId: string) => {
-    await supabase.from('matches').update({ status: 'completed' }).eq('id', matchId)
+    try {
+      await supabase.from('matches').update({ status: 'completed' }).eq('id', matchId)
+      addToast('Pickup confirmed!', 'success')
+    } catch (error) {
+      addToast('Failed to confirm pickup', 'error')
+    }
   }
 
   const activeDemand = demands[0] // take the latest for the active need card
+  const { count: animatedImpact, elementRef: impactRef } = useCountUp(8241)
 
   return (
-    <main className="p-margin-desktop grid grid-cols-12 gap-gutter">
+    <PageTransition>
+    <DataRefreshBar isFetching={isFetching} />
+    <main className="p-margin-desktop grid grid-cols-12 gap-gutter max-w-[1440px] mx-auto">
       {/* COLUMN 1: ACTIVE NEED STATUS */}
       <div className="col-span-12 lg:col-span-3 space-y-stack-lg">
+        <div className="w-full">
+          <a href="/ngo/post-need" className="w-full py-4 bg-primary text-on-primary font-headline-sm rounded-xl hover:bg-primary/90 transition-all shadow-sm flex items-center justify-center gap-2 interactive-btn">
+            <span className="material-symbols-outlined text-[24px]">add_circle</span> 
+            <span>Post New Need</span>
+          </a>
+        </div>
         {activeDemand ? (
             <section className="bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-md overflow-hidden relative">
             <div className="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
@@ -72,9 +96,9 @@ export default function DashboardClient({ initialDemands, initialMatches, userId
             </button>
             </section>
         ) : (
-            <section className="bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-md">
-                <p className="text-on-surface-variant">No active requests.</p>
-            </section>
+            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl">
+              <EmptyState icon={FileSearch} heading="No active requests" subtext="Create a new demand request to start matching." />
+            </div>
         )}
 
         <section className="bg-surface-container-low p-stack-md rounded-lg">
@@ -100,11 +124,21 @@ export default function DashboardClient({ initialDemands, initialMatches, userId
 
         <div className="space-y-stack-md">
           {matches.map((match: any) => (
-            <div key={match.id} className={`bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-lg transition-colors group ${match.status === 'completed' ? 'opacity-80' : 'hover:border-primary'}`}>
+            <div key={match.id} className={`bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg transition-colors group interactive-card ${match.status === 'completed' ? 'opacity-80' : 'hover:border-primary'}`}>
               <div className="flex justify-between items-start mb-stack-md">
                 <div className="flex items-center gap-stack-md">
-                  <div className="w-12 h-12 rounded bg-surface-variant flex items-center justify-center">
-                    <span className="material-symbols-outlined text-primary text-3xl">restaurant</span>
+                  <div className="w-12 h-12 rounded bg-surface-variant flex items-center justify-center relative overflow-hidden flex-shrink-0 border border-outline-variant/30">
+                    <img 
+                      src={`https://image.pollinations.ai/prompt/${encodeURIComponent(`A bowl or plate of authentic Indian cooked ${match.surplus_listings?.food_name || 'food'}, simple realistic food photography, pure vegetarian, single dish, no extra items`)}?width=128&height=128&nologo=true`} 
+                      alt={match.surplus_listings?.food_name || 'food'}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                    <div className="absolute inset-0 -z-10 flex items-center justify-center bg-surface-variant">
+                      <span className="material-symbols-outlined text-primary text-3xl">restaurant</span>
+                    </div>
                   </div>
                   <div>
                     <h4 className="font-headline-sm text-headline-sm">{match.surplus_listings?.food_name || 'Surplus Food'}</h4>
@@ -121,7 +155,7 @@ export default function DashboardClient({ initialDemands, initialMatches, userId
               </div>
               <div className="flex gap-stack-md">
                 {match.status === 'pending' ? (
-                  <button onClick={() => confirmPickup(match.id)} className="flex-1 py-4 bg-primary text-on-primary font-headline-sm rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-colors active:scale-95 flex items-center justify-center gap-2">
+                  <button onClick={() => confirmPickup(match.id)} className="flex-1 py-4 bg-primary text-on-primary font-headline-sm rounded-lg hover:bg-primary-container hover:text-on-primary-container interactive-btn flex items-center justify-center gap-2">
                     <span className="material-symbols-outlined">check_circle</span> Confirm Pickup
                   </button>
                 ) : (
@@ -129,17 +163,16 @@ export default function DashboardClient({ initialDemands, initialMatches, userId
                     <span className="material-symbols-outlined">task_alt</span> Picked Up
                   </button>
                 )}
-                <button className="w-14 h-14 border border-outline rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-variant/20 transition-colors">
-                  <span className="material-symbols-outlined">navigation</span>
+                <button className="w-14 h-14 border border-outline rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-variant/20 interactive-btn">
+                  <Navigation className="w-6 h-6" strokeWidth={1.5} />
                 </button>
               </div>
             </div>
           ))}
 
           {matches.length === 0 && (
-            <div className="py-stack-lg border-2 border-dashed border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant">
-              <span className="material-symbols-outlined text-4xl mb-stack-sm text-outline-variant">find_replace</span>
-              <p className="font-body-md">Scanning for additional matches nearby...</p>
+            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl">
+              <EmptyState icon={Search} heading="Scanning for matches" subtext="Active supply will appear here as soon as it is matched." />
             </div>
           )}
         </div>
@@ -148,16 +181,16 @@ export default function DashboardClient({ initialDemands, initialMatches, userId
       {/* COLUMN 3: HISTORY & ANALYTICS */}
       <div className="col-span-12 lg:col-span-3 space-y-stack-lg">
         {/* IMPACT CARD */}
-        <section className="bg-primary text-on-primary rounded-lg p-stack-lg shadow-xl relative overflow-hidden">
+        <section ref={impactRef as any} className="bg-primary text-on-primary rounded-xl p-stack-lg shadow-xl relative overflow-hidden interactive-card">
           <div className="relative z-10">
             <h4 className="font-label-caps text-label-caps mb-stack-md opacity-80 uppercase tracking-widest">Global Impact Score</h4>
             <div className="flex items-baseline gap-2 mb-stack-sm">
-              <span className="font-headline-lg text-[40px] leading-none">8,241</span>
+              <span className="font-headline-lg text-[40px] leading-none">{animatedImpact.toLocaleString()}</span>
               <span className="font-body-md">meals saved</span>
             </div>
             <p className="text-on-primary/70 text-sm mb-stack-md font-body-md">You're in the top 5% of community partners this month.</p>
-            <div className="w-full bg-white/20 h-1 rounded-full">
-              <div className="bg-white h-full rounded-full" style={{ width: '85%' }}></div>
+            <div className="w-full bg-surface-container-lowest/20 h-1 rounded-full">
+              <div className="bg-surface-container-lowest h-full rounded-full" style={{ width: '85%' }}></div>
             </div>
           </div>
         </section>
@@ -176,5 +209,6 @@ export default function DashboardClient({ initialDemands, initialMatches, userId
         </div>
       </div>
     </main>
+    </PageTransition>
   )
 }

@@ -48,7 +48,7 @@ export default async function VolunteerDashboard() {
   const initials = profile.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()
 
   return (
-    <main className="min-h-screen bg-[#F4F6F9] pb-20">
+    <main className="min-h-screen bg-surface-container-high pb-20">
 
       {/* ── Header ── */}
       <header className="bg-primary text-on-primary sticky top-0 z-50 shadow-lg">
@@ -59,17 +59,17 @@ export default async function VolunteerDashboard() {
           </div>
           <div className="flex items-center gap-2">
             <Link href="/" title="Back to Home"
-              className="flex items-center gap-1.5 text-on-primary/80 hover:text-on-primary text-sm font-medium px-3 py-1.5 rounded-full hover:bg-white/15 transition-all">
+              className="flex items-center gap-1.5 text-on-primary/80 hover:text-on-primary text-sm font-medium px-3 py-1.5 rounded-full hover:bg-surface-container-lowest/15 transition-all">
               <span className="material-symbols-outlined text-[18px]">home</span>
               <span className="hidden sm:inline">Home</span>
             </Link>
-            <div className="w-px h-5 bg-white/20"></div>
+            <div className="w-px h-5 bg-surface-container-lowest/20"></div>
             <Link href="/volunteer/onboarding" title="Edit Profile"
-              className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors">
+              className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-surface-container-lowest/20 transition-colors">
               <span className="material-symbols-outlined text-[20px]">tune</span>
             </Link>
             <LogoutButton />
-            <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm">
+            <div className="w-9 h-9 rounded-full bg-surface-container-lowest/20 flex items-center justify-center font-bold text-sm">
               {initials}
             </div>
           </div>
@@ -81,12 +81,12 @@ export default async function VolunteerDashboard() {
         {/* ── Profile Hero Card ── */}
         <div className="relative bg-primary rounded-2xl overflow-hidden shadow-lg">
           {/* Decorative circles */}
-          <div className="absolute -top-6 -right-6 w-36 h-36 rounded-full bg-white/10"></div>
-          <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full bg-white/5"></div>
+          <div className="absolute -top-6 -right-6 w-36 h-36 rounded-full bg-surface-container-lowest/10"></div>
+          <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full bg-surface-container-lowest/5"></div>
 
           <div className="relative p-6">
             <div className="flex items-center gap-4 mb-5">
-              <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center font-bold text-xl text-on-primary shrink-0">
+              <div className="w-14 h-14 rounded-2xl bg-surface-container-lowest/20 flex items-center justify-center font-bold text-xl text-on-primary shrink-0">
                 {initials}
               </div>
               <div>
@@ -108,11 +108,11 @@ export default async function VolunteerDashboard() {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mt-4">
-              <span className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-on-primary text-xs font-semibold px-3 py-1.5 rounded-full">
+              <span className="flex items-center gap-1.5 bg-surface-container-lowest/15 backdrop-blur-sm text-on-primary text-xs font-semibold px-3 py-1.5 rounded-full">
                 <span className="material-symbols-outlined text-[14px]">{avail.icon}</span>
                 {avail.label}
               </span>
-              <span className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-on-primary text-xs font-semibold px-3 py-1.5 rounded-full">
+              <span className="flex items-center gap-1.5 bg-surface-container-lowest/15 backdrop-blur-sm text-on-primary text-xs font-semibold px-3 py-1.5 rounded-full">
                 <span className="material-symbols-outlined text-[14px]">emergency_share</span>
                 {posts.length} {posts.length === 1 ? 'Alert Posted' : 'Alerts Posted'}
               </span>
@@ -126,7 +126,7 @@ export default async function VolunteerDashboard() {
           <div className="grid grid-cols-2 gap-3">
             {actions.map(a => (
               <Link key={a.href} href={a.href}
-                className="group bg-white rounded-2xl p-4 shadow-sm border border-outline-variant/50 flex flex-col gap-3 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.98]">
+                className="group bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-outline-variant/50 flex flex-col gap-3 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.98]">
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ backgroundColor: a.bg }}>
                   <span className="material-symbols-outlined text-[22px]" style={{ color: a.accent }}>{a.icon}</span>
                 </div>
@@ -148,7 +148,7 @@ export default async function VolunteerDashboard() {
           <div className="flex gap-3 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden -mx-4 px-4">
             {achievements.map(a => (
               <div key={a.id}
-                className={`shrink-0 w-28 bg-white rounded-2xl border p-3 flex flex-col items-center text-center transition-all
+                className={`shrink-0 w-28 bg-surface-container-lowest rounded-2xl border p-3 flex flex-col items-center text-center transition-all
                   ${a.unlocked ? 'border-outline-variant/50 shadow-sm hover:shadow-md hover:-translate-y-0.5' : 'border-transparent opacity-35 grayscale'}`}>
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-2" style={{ backgroundColor: a.unlocked ? a.bg : '#EEEEEE' }}>
                   <span className="material-symbols-outlined text-2xl" style={{ color: a.unlocked ? a.fg : '#9E9E9E' }}>{a.icon}</span>
@@ -174,7 +174,7 @@ export default async function VolunteerDashboard() {
           </div>
 
           {posts.length === 0 ? (
-            <div className="bg-white rounded-2xl border border-dashed border-outline-variant p-6 flex flex-col items-center text-center shadow-sm">
+            <div className="bg-surface-container-lowest rounded-2xl border border-dashed border-outline-variant p-6 flex flex-col items-center text-center shadow-sm">
               <span className="material-symbols-outlined text-4xl text-outline mb-2">emergency_share</span>
               <p className="font-medium text-on-surface text-sm">No urgency posts yet</p>
               <p className="text-xs text-on-surface-variant mt-1 mb-3">See something urgent in your area? Post an alert.</p>
@@ -186,7 +186,7 @@ export default async function VolunteerDashboard() {
           ) : (
             <div className="flex flex-col gap-3">
               {posts.map((post: any) => (
-                <div key={post.id} className="bg-white rounded-2xl shadow-sm border border-outline-variant/50 overflow-hidden flex">
+                <div key={post.id} className="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/50 overflow-hidden flex">
                   {post.photo_url && (
                     <img src={post.photo_url} alt="urgency" className="w-24 h-full object-cover shrink-0" />
                   )}

@@ -72,7 +72,7 @@ export default function EmergencyReportForm() {
         </div>
         <div>
           <label className="text-xs font-bold text-on-surface-variant mb-1 block">Phone Number</label>
-          <input required type="tel" name="phone" className="w-full p-2 rounded bg-surface border border-outline-variant text-on-surface focus:border-primary focus:outline-none" placeholder="+1..." />
+          <input required type="tel" name="phone" defaultValue="+91 " className="w-full p-2 rounded bg-surface border border-outline-variant text-on-surface focus:border-primary focus:outline-none" placeholder="+91 98765 43210" />
         </div>
         <div>
           <label className="text-xs font-bold text-on-surface-variant mb-1 block">Exact Location / Address</label>

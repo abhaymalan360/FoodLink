@@ -1,10 +1,48 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { postNeed } from '../actions'
+import dynamic from 'next/dynamic'
+
+const LiveMap = dynamic(
+  () => import('@/components/Map/LeafletMap'),
+  {
+    ssr: false,
+    loading: () => <div className="w-full h-full flex items-center justify-center text-primary font-bold animate-pulse">Loading Map...</div>
+  }
+)
+
+const LocationPickerDynamic = dynamic(
+  () => import('@/components/Map/LocationPicker'),
+  { ssr: false, loading: () => <div className="w-full h-64 bg-surface-variant animate-pulse rounded-lg flex items-center justify-center text-on-surface-variant">Loading Map...</div> }
+)
 
 export default function PostNeedPage() {
   const [loading, setLoading] = useState(false)
+  const [address, setAddress] = useState('')
+  const [suggestions, setSuggestions] = useState<any[]>([])
+  const [showSuggestions, setShowSuggestions] = useState(false)
+  const [lat, setLat] = useState('20.5937')
+  const [lng, setLng] = useState('78.9629')
+
+  useEffect(() => {
+    if (address.length < 1) {
+      setSuggestions([])
+      return
+    }
+    if (!showSuggestions) return
+
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=10`)
+        const data = await res.json()
+        setSuggestions(data)
+      } catch (err) {
+        console.error(err)
+      }
+    }, 300) // Reduced debounce time for snappier experience
+    return () => clearTimeout(timer)
+  }, [address, showSuggestions])
 
   return (
     <main className="w-full px-margin-desktop py-stack-lg max-w-[1440px] mx-auto">
@@ -26,6 +64,53 @@ export default function PostNeedPage() {
             }} 
             className="space-y-stack-lg"
           >
+            {/* Contact Details */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+              <div className="space-y-stack-sm">
+                <label className="font-label-caps text-label-caps text-on-surface-variant block">Coordinator Name</label>
+                <div className="relative group">
+                  <span className="material-symbols-outlined absolute left-stack-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">person</span>
+                  <input 
+                    name="contact_name"
+                    required
+                    className="w-full pl-12 pr-stack-md py-stack-md bg-surface border-2 border-outline-variant rounded-lg focus:border-primary focus:ring-0 transition-all font-body-md" 
+                    placeholder="e.g. John Doe" 
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div className="space-y-stack-sm">
+                <label className="font-label-caps text-label-caps text-on-surface-variant block">Coordinator Phone</label>
+                <div className="relative group">
+                  <span className="material-symbols-outlined absolute left-stack-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">call</span>
+                  <input 
+                    name="phone"
+                    required
+                    className="w-full pl-12 pr-stack-md py-stack-md bg-surface border-2 border-outline-variant rounded-lg focus:border-primary focus:ring-0 transition-all font-body-md" 
+                    placeholder="+91 98765 43210" 
+                    defaultValue="+91 "
+                    type="tel"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* People Count (Headcount) */}
+            <div className="space-y-stack-sm">
+              <label className="font-label-caps text-label-caps text-on-surface-variant block">Estimated People to Serve</label>
+              <div className="relative group">
+                <span className="material-symbols-outlined absolute left-stack-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">groups</span>
+                <input 
+                  name="headcount"
+                  required
+                  min="1"
+                  className="w-full pl-12 pr-stack-md py-stack-md bg-surface border-2 border-outline-variant rounded-lg focus:border-primary focus:ring-0 transition-all font-body-md" 
+                  placeholder="e.g. 150" 
+                  type="number"
+                />
+              </div>
+            </div>
+
             {/* Location (Area) */}
             <div className="space-y-stack-sm">
               <label className="font-label-caps text-label-caps text-on-surface-variant block">Delivery / Distribution Location (Area)</label>
@@ -34,42 +119,52 @@ export default function PostNeedPage() {
                 <input 
                   name="area"
                   required
+                  value={address}
+                  onChange={(e) => {
+                    setAddress(e.target.value)
+                    setShowSuggestions(true)
+                  }}
+                  onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                  onFocus={() => {
+                    if (address.length >= 1) setShowSuggestions(true)
+                  }}
+                  autoComplete="off"
                   className="w-full pl-12 pr-stack-md py-stack-md bg-surface border-2 border-outline-variant rounded-lg focus:border-primary focus:ring-0 transition-all font-body-md" 
                   placeholder="Enter street address or facility name" 
                   type="text"
                 />
+                {showSuggestions && suggestions.length > 0 && (
+                  <ul className="absolute z-50 w-full bg-surface-container-lowest border border-outline-variant rounded-lg mt-1 max-h-60 overflow-y-auto shadow-lg">
+                    {suggestions.map((s, i) => (
+                      <li 
+                        key={i} 
+                        className="px-4 py-3 hover:bg-surface-variant/20 cursor-pointer text-sm text-on-surface border-b last:border-0 border-outline-variant/50 flex flex-col"
+                        onClick={() => {
+                          setAddress(s.display_name)
+                          setLat(s.lat)
+                          setLng(s.lon)
+                          setShowSuggestions(false)
+                        }}
+                      >
+                        <span className="font-semibold truncate">{s.name || s.display_name.split(',')[0]}</span>
+                        <span className="text-xs text-on-surface-variant truncate">{s.display_name}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
-              {/* People Count (Headcount) */}
-              <div className="space-y-stack-sm">
-                <label className="font-label-caps text-label-caps text-on-surface-variant block">Estimated People to Serve</label>
-                <div className="relative group">
-                  <span className="material-symbols-outlined absolute left-stack-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">groups</span>
-                  <input 
-                    name="headcount"
-                    required
-                    min="1"
-                    className="w-full pl-12 pr-stack-md py-stack-md bg-surface border-2 border-outline-variant rounded-lg focus:border-primary focus:ring-0 transition-all font-body-md" 
-                    placeholder="e.g. 150" 
-                    type="number"
-                  />
-                </div>
-              </div>
-
-              {/* Contact Number (Mock) */}
-              <div className="space-y-stack-sm">
-                <label className="font-label-caps text-label-caps text-on-surface-variant block">On-Site Coordinator Phone</label>
-                <div className="relative group">
-                  <span className="material-symbols-outlined absolute left-stack-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">call</span>
-                  <input 
-                    className="w-full pl-12 pr-stack-md py-stack-md bg-surface border-2 border-outline-variant rounded-lg focus:border-primary focus:ring-0 transition-all font-body-md" 
-                    placeholder="+1 (555) 000-0000" 
-                    type="tel"
-                  />
-                </div>
-              </div>
+            {/* Map Location Picker */}
+            <div className="space-y-unit">
+              <label className="font-label-caps text-label-caps text-on-surface-variant flex items-center justify-between">
+                <span>PINPOINT EXACT LOCATION</span>
+                <span className="text-[10px] text-primary lowercase tracking-normal">Click map to move pin</span>
+              </label>
+              <LocationPickerDynamic onLocationSelect={(newLat: number, newLng: number) => {
+                setLat(newLat)
+                setLng(newLng)
+              }} />
             </div>
 
             {/* Urgency Level */}
@@ -101,8 +196,8 @@ export default function PostNeedPage() {
             </div>
 
             {/* Hidden Coordinates */}
-            <input type="hidden" name="lat" value="40.7128" />
-            <input type="hidden" name="lng" value="-74.0060" />
+            <input type="hidden" name="lat" value={lat} />
+            <input type="hidden" name="lng" value={lng} />
 
             {/* CTA */}
             <div className="pt-stack-md border-t border-outline-variant">
@@ -123,38 +218,8 @@ export default function PostNeedPage() {
         <aside className="lg:col-span-5 flex flex-col gap-gutter">
           {/* Map Container */}
           <div className="relative h-[480px] bg-surface-dim border border-outline-variant rounded-xl overflow-hidden shadow-sm">
-            <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBTnouEPNfUBWWh6buGnbJZW5aU7i36_ZqcsEmpQD-x2zEzWWmvLgV1p7Cq-iReHmrT2MQ0E0MrNu_-q0LIjo4vfdv4CmujhAr2YZzrpVcGi__lF7AImPs1WFxoqSgoIsomxt7BvRdofwdD7Yw8MABPPuWN9gmrxws494jCT60mRK7JXwWYaT-Rpl5GLSomziA73qjQ8flnGCxQIOJfKXVYMnIc_UCLeEsc_u9_evMI7nMKmtN89sJS-Fjs-2gujTBEZxRDTEmfg2Q')" }}></div>
-            
-            {/* Active Markers (Simulated) */}
-            <div className="absolute top-1/4 left-1/3">
-              <div className="relative group cursor-pointer">
-                <span className="material-symbols-outlined text-primary text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>location_on</span>
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-unit w-48 bg-white p-stack-sm rounded-lg shadow-lg border border-outline-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  <p className="font-label-caps text-label-caps text-primary">Green Grocer Hub</p>
-                  <p className="text-[12px] text-on-surface-variant">25kg Fresh Salad Mix</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute bottom-1/3 right-1/4">
-              <div className="relative group cursor-pointer">
-                <span className="material-symbols-outlined text-secondary text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>location_on</span>
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-unit w-48 bg-white p-stack-sm rounded-lg shadow-lg border border-outline-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  <p className="font-label-caps text-label-caps text-secondary">Downtown Bakery</p>
-                  <p className="text-[12px] text-on-surface-variant">50+ Pastries available</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Legend Overlay */}
-            <div className="absolute bottom-stack-md left-stack-md bg-white/90 backdrop-blur-sm border border-outline-variant p-stack-sm rounded-lg">
-              <h4 className="font-label-caps text-label-caps text-on-surface mb-unit">Nearby Surplus</h4>
-              <div className="flex items-center gap-stack-sm">
-                <span className="w-3 h-3 rounded-full bg-primary"></span>
-                <span className="text-[12px] text-on-surface-variant">Verified Partners</span>
-                <span className="w-3 h-3 rounded-full bg-secondary"></span>
-                <span className="text-[12px] text-on-surface-variant">Active Surplus</span>
-              </div>
+            <div className="absolute inset-0 w-full h-full z-0">
+              <LiveMap demands={[]} listings={[]} selectedLocation={null} />
             </div>
           </div>
 

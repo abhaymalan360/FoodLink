@@ -60,7 +60,7 @@ export default function FindOpportunities() {
             <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary"></div>
           </div>
         ) : opportunities.length === 0 ? (
-          <div className="text-center p-10 bg-white rounded-xl shadow-sm border border-outline-variant">
+          <div className="text-center p-10 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant">
             <span className="material-symbols-outlined text-5xl text-outline mb-2">done_all</span>
             <h3 className="font-headline-sm text-on-surface font-bold">No Active Tasks!</h3>
             <p className="text-on-surface-variant mt-2">All surplus has been successfully delivered. Check back soon!</p>
@@ -72,9 +72,9 @@ export default function FindOpportunities() {
               const isClaiming = claimedId === opp.id
               
               return (
-                <div key={opp.id} className={`bg-white rounded-xl shadow-sm border ${isEmergency ? 'border-error/50' : 'border-outline-variant'} overflow-hidden relative transition-all ${isClaiming ? 'opacity-50 scale-[0.98]' : ''}`}>
+                <div key={opp.id} className={`bg-surface-container-lowest rounded-xl shadow-sm border ${isEmergency ? 'border-error/50' : 'border-outline-variant'} overflow-hidden relative transition-all ${isClaiming ? 'opacity-50 scale-[0.98]' : ''}`}>
                   {isClaiming && (
-                    <div className="absolute inset-0 bg-white/80 z-10 flex items-center justify-center backdrop-blur-[2px]">
+                    <div className="absolute inset-0 bg-surface-container-lowest/80 z-10 flex items-center justify-center backdrop-blur-[2px]">
                       <div className="bg-primary text-on-primary px-4 py-2 rounded-full font-bold shadow-lg flex items-center gap-2 animate-bounce">
                         <span className="material-symbols-outlined">check_circle</span>
                         Task Claimed!

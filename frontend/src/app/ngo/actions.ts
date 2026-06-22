@@ -13,8 +13,8 @@ export async function postNeed(formData: FormData) {
   const headcount = parseInt(formData.get('headcount') as string)
   const urgency = formData.get('urgency') as string
   const area = formData.get('area') as string
-  const lat = parseFloat(formData.get('lat') as string) || 40.7128
-  const lng = parseFloat(formData.get('lng') as string) || -74.0060
+  const lat = parseFloat(formData.get('lat') as string) || 20.5937
+  const lng = parseFloat(formData.get('lng') as string) || 78.9629
 
   const expiresAt = new Date()
   expiresAt.setHours(expiresAt.getHours() + 2)

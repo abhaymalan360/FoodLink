@@ -38,20 +38,20 @@ export default function ReportUrgency() {
   }
 
   return (
-    <main className="min-h-screen bg-[#F4F6F9] flex flex-col pb-10">
+    <main className="min-h-screen bg-surface-container-high flex flex-col pb-10">
 
       {/* Header */}
       <div className="bg-[#B71C1C] px-6 pt-10 pb-16 relative overflow-hidden">
-        <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-white/10"></div>
-        <div className="absolute bottom-0 left-0 w-full h-8 bg-[#F4F6F9] rounded-t-[32px]"></div>
+        <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-surface-container-lowest/10"></div>
+        <div className="absolute bottom-0 left-0 w-full h-8 bg-surface-container-high rounded-t-[32px]"></div>
         <div className="flex items-center justify-between mb-4 relative z-10">
           <button onClick={() => router.back()}
-            className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
+            className="w-9 h-9 rounded-full bg-surface-container-lowest/20 flex items-center justify-center hover:bg-surface-container-lowest/30 transition-colors">
             <span className="material-symbols-outlined text-white text-[20px]">arrow_back</span>
           </button>
           <span className="text-white/70 font-medium text-sm">FoodLink</span>
           <Link href="/"
-            className="flex items-center gap-1.5 bg-white/15 hover:bg-white/25 text-white text-xs font-semibold px-3 py-1.5 rounded-full transition-all">
+            className="flex items-center gap-1.5 bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-white text-xs font-semibold px-3 py-1.5 rounded-full transition-all">
             <span className="material-symbols-outlined text-[15px]">home</span>
             Home
           </Link>
@@ -73,13 +73,13 @@ export default function ReportUrgency() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
           {/* Photo upload */}
-          <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+          <div className="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden">
             <label htmlFor="photo-upload" className="cursor-pointer block">
               {photoPreview ? (
                 <div className="relative">
                   <img src={photoPreview} alt="preview" className="w-full h-52 object-cover" />
                   <div className="absolute inset-0 bg-black/20 flex items-end p-4">
-                    <span className="bg-white text-on-surface text-xs font-bold px-3 py-1.5 rounded-full shadow flex items-center gap-1">
+                    <span className="bg-surface-container-lowest text-on-surface text-xs font-bold px-3 py-1.5 rounded-full shadow flex items-center gap-1">
                       <span className="material-symbols-outlined text-[14px]">edit</span> Change Photo
                     </span>
                   </div>
@@ -98,11 +98,11 @@ export default function ReportUrgency() {
           </div>
 
           {/* Fields */}
-          <div className="bg-white rounded-2xl shadow-sm p-5 flex flex-col gap-5">
+          <div className="bg-surface-container-lowest rounded-2xl shadow-sm p-5 flex flex-col gap-5">
             <div>
               <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">What is happening? *</label>
               <textarea required value={form.caption} onChange={e => set('caption', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-[#F4F6F9] border border-transparent focus:border-[#B71C1C] focus:bg-white focus:outline-none transition-all text-on-surface placeholder:text-on-surface-variant/50 min-h-[110px] resize-none"
+                className="w-full px-4 py-3 rounded-xl bg-surface-container-high border border-transparent focus:border-[#B71C1C] focus:bg-surface-container-lowest focus:outline-none transition-all text-on-surface placeholder:text-on-surface-variant/50 min-h-[110px] resize-none"
                 placeholder="e.g. Around 40 people are waiting near the old bus stand since early morning with no access to food..." />
               <p className="text-xs text-on-surface-variant mt-1">{form.caption.length} / 300 characters</p>
             </div>
@@ -112,7 +112,7 @@ export default function ReportUrgency() {
               <div className="relative">
                 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">location_on</span>
                 <input required value={form.location} onChange={e => set('location', e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#F4F6F9] border border-transparent focus:border-[#B71C1C] focus:bg-white focus:outline-none transition-all text-on-surface placeholder:text-on-surface-variant/50"
+                  className="w-full pl-11 pr-4 py-3 rounded-xl bg-surface-container-high border border-transparent focus:border-[#B71C1C] focus:bg-surface-container-lowest focus:outline-none transition-all text-on-surface placeholder:text-on-surface-variant/50"
                   placeholder="e.g. Sector 22 Market, Chandigarh" />
               </div>
               <p className="text-xs text-on-surface-variant mt-1">Will be geocoded and plotted on the live map automatically.</p>
