@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { login, signup } from './actions'
 import { Utensils, HeartHandshake } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -13,6 +13,15 @@ export default function AuthPage() {
   const [role, setRole] = useState<'ngo' | 'restaurant'>('restaurant')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const roleParam = params.get('role')
+    if (roleParam === 'ngo' || roleParam === 'restaurant') {
+      setRole(roleParam)
+      setIsLogin(false)
+    }
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

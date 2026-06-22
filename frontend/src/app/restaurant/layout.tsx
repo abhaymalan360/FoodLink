@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import SidebarNavLinks from '@/components/SidebarNavLink'
 import MobileMenu from '@/components/MobileMenu'
+import ProfileDropdown from '@/components/ProfileDropdown'
+import Greeting from '@/components/ui/Greeting'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { NotificationDropdown } from '@/components/ui/NotificationDropdown'
 
 export default async function RestaurantLayout({ children }: { children: React.ReactNode }) {
   const supabase = createClient()
@@ -14,50 +19,59 @@ export default async function RestaurantLayout({ children }: { children: React.R
   return (
     <div className="flex min-h-screen overflow-hidden bg-background text-on-surface">
       {/* SIDEBAR NAVIGATION (LEFT) */}
-      <aside className="w-64 bg-surface-container border-r border-outline-variant hidden md:flex flex-col z-40">
-        <div className="p-stack-lg">
-          <span className="font-headline-md text-headline-md font-bold text-primary tracking-tight">FoodLink</span>
+      <aside className="w-[260px] hidden md:flex flex-col z-40 relative bg-surface-container-lowest border-r border-outline-variant/60">
+        {/* Logo */}
+        <div className="px-6 pt-8 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-emerald-600 shadow-sm">
+              <span className="material-symbols-outlined text-white text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>restaurant</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[19px] font-bold tracking-tight text-emerald-700 leading-none">FoodLink</span>
+            </div>
+          </div>
         </div>
-        <nav className="flex-1 px-stack-md py-stack-sm space-y-unit">
-          <Link className="flex items-center gap-stack-md px-stack-md py-3 text-on-surface-variant hover:bg-surface-variant/50 hover:text-primary rounded-lg transition-all duration-200" href="/restaurant/dashboard">
-            <span className="material-symbols-outlined">home</span>
-            <span className="font-headline-sm text-headline-sm">Home</span>
-          </Link>
-          <Link className="flex items-center gap-stack-md px-stack-md py-3 text-on-surface-variant hover:bg-surface-variant/50 hover:text-primary rounded-lg transition-all duration-200" href="/restaurant/list-surplus">
-            <span className="material-symbols-outlined">add_circle</span>
-            <span className="font-headline-sm text-headline-sm">List</span>
-          </Link>
-          <Link className="flex items-center gap-stack-md px-stack-md py-3 text-on-surface-variant hover:bg-surface-variant/50 hover:text-primary rounded-lg transition-all duration-200" href="/impact">
-            <span className="material-symbols-outlined">insights</span>
-            <span className="font-headline-sm text-headline-sm">Impact</span>
-          </Link>
-          <Link className="flex items-center gap-stack-md px-stack-md py-3 text-on-surface-variant hover:bg-surface-variant/50 hover:text-primary rounded-lg transition-all duration-200" href="/heatmap">
-            <span className="material-symbols-outlined">map</span>
-            <span className="font-headline-sm text-headline-sm">Heatmap</span>
-          </Link>
+
+        {/* Nav */}
+        <SidebarNavLinks
+          items={[
+            { href: '/restaurant/dashboard', icon: 'grid_view', label: 'Dashboard' },
+            { href: '/restaurant/list-surplus', icon: 'add_circle', label: 'List Surplus' },
+            { href: '/impact', icon: 'insights', label: 'Impact' },
+            { href: '/heatmap', icon: 'map', label: 'Live Map' },
+          ]}
+          bottomItems={[
+            { href: '/', icon: 'home', label: 'Back to Home' },
+          ]}
+        >
           <MobileMenu 
             trigger={
-              <div className="flex items-center gap-stack-md px-stack-md py-3 text-on-surface-variant hover:bg-surface-variant/50 hover:text-primary rounded-lg transition-all duration-200">
-                <span className="material-symbols-outlined">menu</span>
-                <span className="font-headline-sm text-headline-sm">More Options</span>
-              </div>
+              <button className="w-full group flex items-center gap-3 px-3 py-2.5 mx-3 rounded-xl transition-all duration-200 relative text-on-surface-variant hover:bg-surface-container-high/40 hover:text-on-surface border border-transparent cursor-pointer">
+                <span className="material-symbols-outlined text-[20px] text-on-surface-variant group-hover:text-on-surface-variant transition-colors" style={{ fontVariationSettings: "'FILL' 0" }}>menu</span>
+                <span className="text-[13.5px] tracking-tight font-medium transition-colors">More Options</span>
+              </button>
             }
           />
-        </nav>
-        <div className="p-stack-md mt-auto border-t border-outline-variant">
+        </SidebarNavLinks>
+
+        {/* User Footer */}
+        <div className="p-4 mx-3 mb-4">
           <form action={async () => {
             'use server'
             const supabase = createClient()
             await supabase.auth.signOut()
             redirect('/')
           }}>
-            <button type="submit" className="w-full flex items-center gap-stack-md p-stack-sm rounded-lg hover:bg-surface-variant/50 cursor-pointer text-left">
-              <div className="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
-                <span className="material-symbols-outlined">restaurant</span>
+            <button type="submit" className="w-full flex items-center gap-3 p-2.5 rounded-xl cursor-pointer text-left group hover:bg-surface-container-lowest border border-transparent hover:border-outline-variant/60 hover:shadow-sm transition-all">
+              <div className="w-9 h-9 rounded-[10px] flex items-center justify-center flex-shrink-0 font-bold text-[13px] text-on-surface bg-surface-container-high/50 group-hover:bg-surface-container border border-outline-variant/50">
+                {(profile?.name || 'R').charAt(0).toUpperCase()}
               </div>
-              <div className="flex flex-col">
-                <span className="font-label-caps text-label-caps text-on-surface truncate">{profile?.name || 'Restaurant'}</span>
-                <span className="text-[12px] text-error flex items-center gap-1 mt-0.5"><span className="material-symbols-outlined text-[14px]">logout</span> Sign Out</span>
+              <div className="flex flex-col flex-1 min-w-0">
+                <span className="text-[13px] font-semibold text-on-surface truncate">{profile?.name || 'Restaurant'}</span>
+                <span className="text-[11px] font-medium text-on-surface-variant">Manage Account</span>
+              </div>
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0">
+                <span className="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-on-surface-variant transition-colors">logout</span>
               </div>
             </button>
           </form>
@@ -76,11 +90,15 @@ export default async function RestaurantLayout({ children }: { children: React.R
             <span className="h-4 w-[1px] bg-outline-variant"></span>
             <h2 className="font-headline-sm text-headline-sm text-on-surface-variant">Restaurant Dashboard</h2>
           </div>
-          <div className="flex items-center gap-stack-lg hidden md:flex">
-            <button className="relative p-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-full transition-colors active:scale-95">
-              <span className="material-symbols-outlined">notifications</span>
-              <span className="absolute top-2 right-2 w-2 h-2 bg-tertiary rounded-full border-2 border-surface"></span>
-            </button>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <NotificationDropdown />
+            <ProfileDropdown
+              name={profile?.name || 'Restaurant'}
+              role="restaurant"
+              initial={(profile?.name || 'R').charAt(0).toUpperCase()}
+            />
+            <MobileMenu variant="header" />
           </div>
         </header>
 

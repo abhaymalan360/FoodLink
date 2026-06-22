@@ -26,11 +26,14 @@ export default async function RestaurantDashboard() {
     .eq('restaurant_id', user.id)
     .order('matched_at', { ascending: false })
 
+  const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single()
+
   return (
     <DashboardClient 
       initialListings={activeListings || []} 
       initialMatches={matches || []} 
       userId={user.id} 
+      profileName={profile?.name || 'Restaurant'}
     />
   )
 }
